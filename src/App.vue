@@ -10,7 +10,9 @@
           <li class="transition-colors group-hover:text-[#0073FF]">/</li>
           <li class="hover:text-[#C50000]"><RouterLink to="/review">Отзывы </RouterLink></li>
           <li class="transition-colors group-hover:text-[#0073FF]">/</li>
-          <li class="hover:text-[#C50000] min-w-fit">Заполнить бриф</li>
+          <li class="hover:text-[#C50000] min-w-fit">
+            <RouterLink to="/breef">Заполнить бриф</RouterLink>
+          </li>
           <li class="transition-colors group-hover:text-[#0073FF]">/</li>
           <li class="hover:text-[#C50000]">Презентация</li>
         </ul>
@@ -44,11 +46,11 @@
         <div class="text-start">
           <ul class="flex flex-col gap-[15px] font-mono text-[15px] text-[#D0D0D0]">
             <li class="font-mulish text-[20px] font-[600] text-white">Карта сайта</li>
-            <li class="hover:text-[#FFCD00]"><a href="">Главная</a></li>
-            <li class="hover:text-[#FFCD00]"><a href="">Портфолио</a></li>
-            <li class="hover:text-[#FFCD00]"><a href="">Отзывы</a></li>
-            <li class="hover:text-[#FFCD00]"><a href="">Услуги</a></li>
-            <li class="hover:text-[#FFCD00]"><a href="">Контакты</a></li>
+            <li class="hover:text-[#FFCD00]"><RouterLink to="/"> Главная</RouterLink></li>
+            <li class="hover:text-[#FFCD00]"><RouterLink to="/stands">Портфолио</RouterLink></li>
+            <li class="hover:text-[#FFCD00]"><RouterLink to="/review">Отзывы</RouterLink></li>
+            <li class="hover:text-[#FFCD00]"><RouterLink to="/service">Услуги</RouterLink></li>
+            <li class="hover:text-[#FFCD00]"><RouterLink to="/contacts">Контакты</RouterLink></li>
           </ul>
         </div>
         <div class=""><img class="w-[283px]" src="@/assets/img/logoFoot.png" alt="" /></div>

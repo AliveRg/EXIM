@@ -4,6 +4,8 @@ import StandsView from '../views/StandsView.vue'
 import ReviewView from '../views/ReviewView.vue'
 import UniversalView from '../views/UniversalView.vue'
 import ServiceView from '../views/ServiceView.vue'
+import ContactsView from '../views/ContactsView.vue'
+import BreefView from '../views/BreefView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,9 +23,19 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/breef',
+      name: 'breef',
+      component: BreefView
+    },
+    {
       path: '/review',
       name: 'review',
       component: ReviewView
+    },
+    {
+      path: '/contacts',
+      name: 'contacts',
+      component: ContactsView
     },
     {
       path: '/service',
