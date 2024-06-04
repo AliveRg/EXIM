@@ -1290,7 +1290,7 @@
             Готовитесь к выставке?</span
           >
         </p>
-        <div class="w-full mt-[49px] min-h-[800px]">
+        <div class="w-full mt-[49px] min-h-[850px]">
           <transition-group name="accordion" tag="div">
             <div
               v-for="item in questions"
@@ -1363,7 +1363,7 @@ export default {
   data() {
     return {
       swiper1: null,
-      activeQuestionId: null,
+      activeQuestionId: 1,
       activePaginationIndex1: 0,
       slides1: 3,
       hovered: true,
