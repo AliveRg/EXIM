@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="z-10 h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
+    class="z-10 pt-[100px] h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
   >
     <div class="w-1/2 flex flex-col relative">
       <Swiper
@@ -135,9 +135,11 @@
           >
         </p>
         <div
-          class="px-[44px] w-full grid grid-cols-4 grid-rows-2 gap-y-[70px] gap-x-[130px] text-[#D0D0D0] font-mulish font-[800] text-[20px]"
+          class="px-[44px] w-full grid grid-cols-4 grid-rows-2 gap-y-[10px] gap-x-[20px] text-[#D0D0D0] font-mulish font-[800] text-[20px]"
         >
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="30"
               height="51"
@@ -173,7 +175,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">3D Дизайн</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="43"
               height="44"
@@ -228,7 +232,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Планировка</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="47"
               height="57"
@@ -288,7 +294,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Проектирование</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="48"
               height="48"
@@ -365,7 +373,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Производство</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="52"
               height="40"
@@ -406,7 +416,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Перевозка</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="41"
               height="43"
@@ -472,7 +484,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Монтаж</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="46"
               height="51"
@@ -532,7 +546,9 @@
 
             <p class="transition-colors group-hover:text-[#0073FF]">Оформление</p>
           </div>
-          <div class="flex flex-col items-center justify-center gap-[20px] group transition-all">
+          <div
+            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+          >
             <svg
               width="42"
               height="50"
@@ -604,7 +620,24 @@
       >
         <div class="w-full flex items-center justify-center">
           <div class="w-1/2">
-            <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+            <div class="" v-for="item in 5">
+              <!-- <transition name="fade1" mode="out-in"> -->
+              <div>
+                <img
+                  v-if="item == activePaginationIndex"
+                  class="w-full"
+                  src="@/assets/img/videoPrew.jpeg"
+                  alt=""
+                />
+                <img
+                  v-if="item - 1 == activePaginationIndex && item - 1 == 0"
+                  class="w-full h-[329px]"
+                  src="@/assets/img/PrewUniv.png"
+                  alt=""
+                />
+              </div>
+              <!-- </transition> -->
+            </div>
           </div>
 
           <div class="w-1/2 pl-[50px]">
@@ -1102,7 +1135,11 @@
         </p>
 
         <div class="flex items-center justify-between w-full">
-          <div class="flex group" v-for="item in fiveBlock" :key="item.id">
+          <div
+            class="flex group select-none cursor-pointer"
+            v-for="item in fiveBlock"
+            :key="item.id"
+          >
             <svg
               width="180"
               height="100"
@@ -1254,51 +1291,56 @@
           >
         </p>
         <div class="w-full mt-[49px]">
-          <div
-            v-for="item in questions"
-            :key="item.id"
-            class="mb-4 border border-gray-300 px-[40px] py-[29px] rounded-[10px]"
-          >
-            <button @click="toggleAnswer(item.id)" class="w-full text-left py-2 focus:outline-none">
-              <div class="flex justify-between items-center">
-                <h2 class="text-lg text-[#4D4D4D] font-mulish text-[20px] font-[800]">
-                  {{ item.question }}
-                </h2>
-                <span>
-                  <svg
-                    v-if="item.isOpen"
-                    width="10"
-                    height="4"
-                    viewBox="0 0 10 4"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M0.878516 3.22V0.0999996H9.12852V3.22H0.878516Z" fill="#4D4D4D" />
-                  </svg>
-                  <svg
-                    v-else
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5.41234 14.25V0.749999H8.62234V14.25H5.41234ZM0.102344 9V6H13.9323V9H0.102344Z"
-                      fill="#4D4D4D"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </button>
-            <transition name="accordion">
-              <div v-show="item.isOpen" class="overflow-hidden">
-                <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
-                  {{ item.answer }}
+          <transition-group name="accordion" tag="div">
+            <div
+              v-for="item in questions"
+              :key="item.id"
+              class="mb-4 border border-gray-300 px-[40px] py-[29px] rounded-[10px]"
+            >
+              <button
+                @click="toggleAnswer(item.id)"
+                class="w-full text-left py-2 focus:outline-none"
+              >
+                <div class="flex justify-between items-center">
+                  <h2 class="text-lg text-[#4D4D4D] font-mulish text-[20px] font-[800]">
+                    {{ item.question }}
+                  </h2>
+                  <span>
+                    <svg
+                      v-if="activeQuestionId === item.id"
+                      width="10"
+                      height="4"
+                      viewBox="0 0 10 4"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M0.878516 3.22V0.0999996H9.12852V3.22H0.878516Z" fill="#4D4D4D" />
+                    </svg>
+                    <svg
+                      v-else
+                      width="14"
+                      height="15"
+                      viewBox="0 0 14 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.41234 14.25V0.749999H8.62234V14.25H5.41234ZM0.102344 9V6H13.9323V9H0.102344Z"
+                        fill="#4D4D4D"
+                      />
+                    </svg>
+                  </span>
                 </div>
-              </div>
-            </transition>
-          </div>
+              </button>
+              <transition name="accordion">
+                <div v-show="activeQuestionId === item.id" class="overflow-hidden">
+                  <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
+                    {{ item.answer }}
+                  </div>
+                </div>
+              </transition>
+            </div>
+          </transition-group>
         </div>
       </div>
     </section>
@@ -1321,10 +1363,9 @@ export default {
   data() {
     return {
       swiper1: null,
-
+      activeQuestionId: null,
       activePaginationIndex1: 0,
       slides1: 3,
-
       hovered: true,
       hovered1: true,
       slides: 5,
@@ -1440,10 +1481,13 @@ export default {
         item.active = item.id === id
       })
     },
-    toggleAnswer(id) {
-      this.questions = this.questions.map((item) =>
-        item.id === id ? { ...item, isOpen: !item.isOpen } : item
-      )
+    toggleAnswer(questionId) {
+      if (this.activeQuestionId !== questionId) {
+        this.activeQuestionId = null
+        setTimeout(() => {
+          this.activeQuestionId = questionId
+        }, 300) // Задержка для завершения анимации закрытия
+      }
     },
     onSwiper1(swiper) {
       this.swiper1 = swiper
@@ -1589,12 +1633,11 @@ export default {
 .accordion-enter-active,
 .accordion-leave-active {
   transition:
-    max-height 0.5s ease-in-out,
-    padding 0.5s ease-in-out;
+    max-height 0.3s ease,
+    opacity 0.3s ease;
 }
-.accordion-enter, .accordion-leave-to /* .accordion-leave-active in <2.1.8 */ {
+.accordion-enter, .accordion-leave-to /* .accordion-leave-active в версии <2.1.8 */ {
   max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  opacity: 0;
 }
 </style>
