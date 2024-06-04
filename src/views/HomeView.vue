@@ -1290,7 +1290,7 @@
             Готовитесь к выставке?</span
           >
         </p>
-        <div class="w-full mt-[49px]">
+        <div class="w-full mt-[49px] min-h-[800px]">
           <transition-group name="accordion" tag="div">
             <div
               v-for="item in questions"
@@ -1333,7 +1333,7 @@
                 </div>
               </button>
               <transition name="accordion">
-                <div v-show="activeQuestionId === item.id" class="overflow-hidden">
+                <div v-show="activeQuestionId === item.id" class="overflow-hidden max-h-[400px]">
                   <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
                     {{ item.answer }}
                   </div>
