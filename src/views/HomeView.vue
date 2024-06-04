@@ -83,7 +83,7 @@
         политикой конфиденциальности
       </p>
       <button
-        class="bg-[#2700C5] text-white py-[18px] px-[210px] font-[800] font-mulish text-[15px] rounded-[10px]"
+        class="hover:bg-[#C50000] bg-[#2700C5] text-white py-[18px] px-[210px] font-[800] font-mulish text-[15px] rounded-[10px] transition-all"
       >
         Отправить
       </button>
@@ -1269,7 +1269,7 @@
                 <label for="tell" class="form__label font-mono">Ваш телефон</label>
               </div>
               <button
-                class="w-full bg-[#C50000] text-left py-[18px] pl-[29px] rounded-[10px] text-white font-mulish font-[800] text-[15px]"
+                class="w-full hover:bg-[#1700c5] bg-[#C50000] text-left py-[18px] pl-[29px] rounded-[10px] text-white font-mulish font-[800] text-[15px] transition-all"
               >
                 Отправить
               </button>
