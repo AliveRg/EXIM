@@ -1366,6 +1366,7 @@ import 'swiper/css/scrollbar'
 export default {
   data() {
     return {
+      modules: [Autoplay, Navigation, Pagination, Scrollbar, A11y],
       swiper1: null,
       activeQuestionId: 1,
       activePaginationIndex1: 0,
@@ -1517,9 +1518,7 @@ export default {
     SwiperSlide
   },
   setup() {
-    return {
-      modules: [Autoplay, Navigation, Pagination, Scrollbar, A11y]
-    }
+    return {}
   }
 }
 </script>
