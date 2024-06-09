@@ -3,601 +3,605 @@ import ButtonForm from '@/components/ButtonComponent.vue'
 </script>
 
 <template>
-  <div
-    ref="firstSection"
-    class="z-10 pt-[100px] h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
-  >
-    <div class="w-1/2 flex flex-col relative">
-      <Swiper
-        @swiper="onSwiper1"
-        ref="swiper1"
-        :slides-per-view="1"
-        :space-between="150"
-        :autoplay="{ delay: 2500, disableOnInteraction: false }"
-        :modules="modules"
-        class="swiper swiper1 m-0 w-full"
-      >
-        <!-- Additional required wrapper -->
-
-        <!-- Slides -->
-        <swiper-slide>
-          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-            НАЙДЁМ <br />
-            КРЕАТИВНОЕ <br />
-            РЕШЕНИЕ
-          </p>
-          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-        </swiper-slide>
-        <swiper-slide>
-          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-            НАЙДЁМ <br />
-            КРЕАТИВНОЕ <br />
-            РЕШЕНИЕ
-          </p>
-          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-        </swiper-slide>
-        <swiper-slide>
-          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-            НАЙДЁМ <br />
-            КРЕАТИВНОЕ <br />
-            РЕШЕНИЕ
-          </p>
-          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-        </swiper-slide>
-      </Swiper>
-
-      <p class="mb-[100px] text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-      <div class="flex justify-start gap-[20px] custom-pagination left-0">
-        <svg
-          v-for="(slide, index) in slides1"
-          :key="index"
-          @click="goToSlide1(index)"
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="2"
-          viewBox="0 0 60 2"
-          fill="none"
-        >
-          <path d="M0 1H60" :stroke="index == activePaginationIndex1 ? '#FFCD00' : '#ffffff'" />
-        </svg>
-      </div>
-    </div>
-    <div
-      class="relative z-[100] px-[50px] pt-[59px] pb-[68px] border borderwhite/30 h-fit font-mono"
-    >
-      <p class="mb-[65px] text-white font-mulish text-[20px] font-[900]">
-        Перезвоним Вам и обсудим проект
-      </p>
-      <input
-        type="text"
-        class="mb-[44px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
-        placeholder="Ваше имя"
-      />
-      <input
-        type="text"
-        class="mb-[26px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
-        placeholder="Ваш телефон"
-      />
-      <p class="text-white pb-[22px]">
-        Нажимая «Отправить», вы соглашаетесь с <br />
-        политикой конфиденциальности
-      </p>
-      <ButtonForm />
-    </div>
-  </div>
-
-  <main ref="mainContent">
-    <section
-      class="section-1 flex flex-col items-center justify-start px-[65px] bg-neutral-100 py-[153px]"
-    >
-      <div class="max-w-[1000px] w-full mx-auto flex flex-col justify-center items-end">
-        <p
-          class="flex items-center gap-[20px] font-mulish font-[900] text-black text-[20px] w-full"
-        >
-          <span class="text-[30px] font-[800]">
-            <span class="text-[#0073FF] text-[25px]">1 /</span>
-            EXIM</span
-          >
-          <svg
-            width="40"
-            height="2"
-            viewBox="0 0 40 2"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0 1H40" stroke="black" />
-          </svg>
-          Успех и качество с 2022 года
-        </p>
-        <p class="w-4/5 mr-[7px]">
-          Идейные соображения высшего порядка, а также новая модель организационной деятельности
-          представляет собой интересный эксперимент проверки систем массового участия. Повседневная
-          практика показывает, что новая модель организационной деятельности представляет собой
-          интересный эксперимент проверки соответствующий условий активизации.
-        </p>
-      </div>
-    </section>
-    <section
-      class="section-1 flex flex-col items-center justify-start px-[65px] bg-white pt-[86px]"
-    >
+  <main class="">
+    <div class="snap-mandatory snap-y overflow-scroll h-screen">
       <div
-        class="max-w-[1000px] w-full mx-auto flex flex-col justify-center items-start gap-[58px]"
+        class="snap-start z-10 pt-[100px] h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
       >
-        <p
-          class="flex items-center gap-[20px] font-mulish font-[900] text-black text-[20px] w-full"
-        >
-          <span class="text-[30px] font-[800]">
-            <span class="text-[#0073FF] text-[25px]">2 /</span>
-            Услуги</span
+        <div class="w-1/2 flex flex-col relative">
+          <Swiper
+            @swiper="onSwiper1"
+            ref="swiper1"
+            :slides-per-view="1"
+            :space-between="150"
+            :autoplay="{ delay: 2500, disableOnInteraction: false }"
+            :modules="modules"
+            class="swiper swiper1 m-0 w-full"
           >
-        </p>
-        <div
-          class="px-[44px] w-full grid grid-cols-4 grid-rows-2 gap-y-[10px] gap-x-[20px] text-[#D0D0D0] font-mulish font-[800] text-[20px]"
-        >
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="30"
-              height="51"
-              viewBox="0 0 30 51"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_270_66)">
-                <path
-                  d="M13 1H17C23.9036 1 29.5 6.59644 29.5 13.5V38.5C29.5 44.8513 24.3513 50 18 50H12C5.64873 50 0.5 44.8513 0.5 38.5V13.5C0.5 6.59644 6.09644 1 13 1Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                />
-                <path
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  d="M0.5 16H29.5"
-                  stroke="#D0D0D0"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M15 1.5V16"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke="#D0D0D0"
-                  stroke-linecap="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_66">
-                  <rect width="30" height="50" fill="white" transform="translate(0 0.5)" />
-                </clipPath>
-              </defs>
-            </svg>
+            <!-- Additional required wrapper -->
 
-            <p class="transition-colors group-hover:text-[#0073FF]">3D Дизайн</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="43"
-              height="44"
-              viewBox="0 0 43 44"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_270_22)">
-                <path
-                  d="M1.5 4.5L5 8L10.5 1"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M15.5 5.5H42.5"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M1 22.5L4.5 26L10 19"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M15 23.5H42"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M1 39.5L4.5 43L10 36"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M15 40.5H42"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_22">
-                  <rect width="43" height="44" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
+            <!-- Slides -->
+            <swiper-slide>
+              <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+              <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+                НАЙДЁМ <br />
+                КРЕАТИВНОЕ <br />
+                РЕШЕНИЕ
+              </p>
+              <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+            </swiper-slide>
+            <swiper-slide>
+              <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+              <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+                НАЙДЁМ <br />
+                КРЕАТИВНОЕ <br />
+                РЕШЕНИЕ
+              </p>
+              <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+            </swiper-slide>
+            <swiper-slide>
+              <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+              <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+                НАЙДЁМ <br />
+                КРЕАТИВНОЕ <br />
+                РЕШЕНИЕ
+              </p>
+              <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+            </swiper-slide>
+          </Swiper>
 
-            <p class="transition-colors group-hover:text-[#0073FF]">Планировка</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
+          <p class="mb-[100px] text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
+          <div class="flex justify-start gap-[20px] custom-pagination left-0">
             <svg
-              width="47"
-              height="57"
-              viewBox="0 0 47 57"
-              fill="none"
+              v-for="(slide, index) in slides1"
+              :key="index"
+              @click="goToSlide1(index)"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_270_88)">
-                <path
-                  d="M18.2207 7H43.7207C44.554 7.16667 46.2207 8 46.2207 10C46.2207 12 46.2207 25.8333 46.2207 32.5C46.054 33.3333 45.3207 35 43.7207 35C42.1207 35 27.7207 35 20.7207 35"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M29.7207 4V6.5"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M33.7207 35L39.2207 56"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M1.22086 32.5C1.62086 34.9 2.7207 35 3.72086 35H12.7207L13.2207 55C13.054 55.5 13.2207 56.5 15.2207 56.5C17.2207 56.5 17.7207 55.5 17.7207 55V21L22.7207 24L31.2207 19.5C32.054 19 33.5207 17.7 32.7207 16.5C31.9207 15.3 30.3874 15.6667 29.7207 16L22.7207 20C19.2207 17.5 17.1207 13.5 10.7207 13.5C4.3207 13.5 1.72081 17.5 1.22086 19.5C1.05419 22.8333 0.820862 30.1 1.22086 32.5Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M17.2209 35H12.7207M12.7207 35H3.72086C2.7207 35 1.62086 34.9 1.22086 32.5C0.820862 30.1 1.05419 22.8333 1.22086 19.5C1.72081 17.5 4.3207 13.5 10.7207 13.5C17.1207 13.5 19.2207 17.5 22.7207 20L29.7207 16C30.3874 15.6667 31.9207 15.3 32.7207 16.5C33.5207 17.7 32.054 19 31.2207 19.5L22.7207 24L17.7207 21V55C17.7207 55.5 17.2207 56.5 15.2207 56.5C13.2207 56.5 13.054 55.5 13.2207 55L12.7207 35Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M3.7207 55V35.5H8.7207L8.2207 55C8.05404 55.5 7.3207 56.5 5.7207 56.5C4.1207 56.5 3.7207 55.5 3.7207 55Z"
-                  fill="#D0D0D0"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF] group-hover:fill-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M10.2207 10C12.9821 10 15.2207 7.76142 15.2207 5C15.2207 2.23858 12.9821 0 10.2207 0C7.45928 0 5.2207 2.23858 5.2207 5C5.2207 7.76142 7.45928 10 10.2207 10Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_88">
-                  <rect width="47" height="57" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <p class="transition-colors group-hover:text-[#0073FF]">Проектирование</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 48 48"
+              width="60"
+              height="2"
+              viewBox="0 0 60 2"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_270_77)">
-                <path
-                  d="M20.5 5.5L21.5 1H26.5L27.5 5.5"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M42.4999 20L46.9999 21V26L42.4185 27"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M5.5 27L1 26V21L5.5 20"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M28 42.5L27 47H22L21 42.5"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M13.5002 39.5L9.24305 42.4247L5.70752 38.8891L8.50045 34.5001"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M8.1819 13.1317L5.70703 9.24262L9.24256 5.70709L13.4999 8.50002"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M34.5 8.50002L38.9794 5.73315L42.3799 9.39872L39.761 13.1923"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M39.9498 34L42.4246 37.8891L38.8891 41.4246L35 38.9498"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M24 32.5C28.6944 32.5 32.5 28.6944 32.5 24C32.5 19.3056 28.6944 15.5 24 15.5C19.3056 15.5 15.5 19.3056 15.5 24C15.5 28.6944 19.3056 32.5 24 32.5Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                />
-                <path
-                  d="M24 42.5C34.2173 42.5 42.5 34.2173 42.5 24C42.5 13.7827 34.2173 5.5 24 5.5C13.7827 5.5 5.5 13.7827 5.5 24C5.5 34.2173 13.7827 42.5 24 42.5Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_77">
-                  <rect width="48" height="48" fill="white" />
-                </clipPath>
-              </defs>
+              <path d="M0 1H60" :stroke="index == activePaginationIndex1 ? '#FFCD00' : '#ffffff'" />
             </svg>
-
-            <p class="transition-colors group-hover:text-[#0073FF]">Производство</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="52"
-              height="40"
-              viewBox="0 0 52 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.60753 34.4856H3.24523C2.35585 34.5997 0.577092 34.3625 0.577092 32.5017C0.577092 30.6408 0.577092 12.0234 0.577092 2.94728C0.554305 2.24037 0.946552 0.826538 2.69784 0.826538C4.44912 0.826538 20.3939 0.826538 28.1474 0.826538C28.8543 0.87215 30.2681 1.36016 30.2681 2.94728C30.2681 4.53441 30.2228 24.7709 30.2002 34.6908"
-                stroke="#D9D9D9"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-              />
-              <path
-                d="M30.2002 9.24121H44.498C45.1982 9.2412 45.2409 9.24124 45.7979 10.5411C46.4547 12.0735 49.5379 20.4837 50.9973 24.4973V32.8437C51.0429 33.2769 50.5584 34.4856 49.1502 34.4856C47.4933 34.4856 45.3874 34.5996 44.498 34.4856"
-                stroke="#D9D9D9"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-              />
-              <path
-                d="M19.1719 34.6008H35.563"
-                stroke="#D9D9D9"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-              />
-              <circle
-                cx="14.3707"
-                cy="34.6908"
-                r="4.30139"
-                stroke="#D9D9D9"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-              />
-              <circle
-                cx="40.3644"
-                cy="34.6908"
-                r="4.30139"
-                stroke="#D9D9D9"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-              />
-            </svg>
-
-            <p class="transition-colors group-hover:text-[#0073FF]">Перевозка</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="41"
-              height="43"
-              viewBox="0 0 41 43"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_270_118)">
-                <path
-                  d="M34.8447 0.923462H6.84473C3.80716 0.923462 1.34473 3.3859 1.34473 6.42346V37.0079C1.34473 40.0454 3.80716 42.5079 6.84473 42.5079H34.8447C37.8823 42.5079 40.3447 40.0454 40.3447 37.0079V6.42346C40.3447 3.3859 37.8823 0.923462 34.8447 0.923462Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                />
-                <path
-                  d="M1.2832 14.9631H40.4247"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M1.77197 29.3455H40.4248"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M13.3613 1.45801V14.6389"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M28.8115 1.45801V14.855"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M13.4697 29.3455V41.7572"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M28.5952 29.3455V41.9733"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M20.8447 15.1792V29.3455"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_118">
-                  <rect width="41" height="43" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <p class="transition-colors group-hover:text-[#0073FF]">Монтаж</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="46"
-              height="51"
-              viewBox="0 0 46 51"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_270_57)">
-                <path
-                  d="M31.8681 40.4516C32.3619 45.5132 30.386 47.9997 29.3364 48.6102C21.01 53.4531 8.31869 47.6348 3.78204 38.6262C0.405771 31.9219 -2.82626 17.0188 7.97839 7.44367C21.5273 -4.5634 35.1285 2.82552 39.4503 5.99673C43.5987 9.04073 49.4345 20.6836 40.5355 24.9522C31.6366 29.2208 31.2509 34.1246 31.8681 40.4516Z"
-                  stroke="#D0D0D0"
-                  class="transition-colors group-hover:stroke-[#0073FF]"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M24.1245 12.3132C25.3707 12.3132 26.3809 11.303 26.3809 10.0568C26.3809 8.81068 25.3707 7.80048 24.1245 7.80048C22.8784 7.80048 21.8682 8.81068 21.8682 10.0568C21.8682 11.303 22.8784 12.3132 24.1245 12.3132Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M15.161 14.0439C16.1169 14.0439 16.8918 13.269 16.8918 12.3131C16.8918 11.3572 16.1169 10.5823 15.161 10.5823C14.2051 10.5823 13.4302 11.3572 13.4302 12.3131C13.4302 13.269 14.2051 14.0439 15.161 14.0439Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M9.41199 21.4001C10.7093 21.4001 11.761 20.3484 11.761 19.0511C11.761 17.7538 10.7093 16.7021 9.41199 16.7021C8.11467 16.7021 7.06299 17.7538 7.06299 19.0511C7.06299 20.3484 8.11467 21.4001 9.41199 21.4001Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M8.42261 30.4506C9.65163 30.4506 10.6479 29.4543 10.6479 28.2253C10.6479 26.9963 9.65163 25.9999 8.42261 25.9999C7.19358 25.9999 6.19727 26.9963 6.19727 28.2253C6.19727 29.4543 7.19358 30.4506 8.42261 30.4506Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M12.3171 38.3885C13.2869 38.3885 14.0731 37.6023 14.0731 36.6325C14.0731 35.6627 13.2869 34.8765 12.3171 34.8765C11.3472 34.8765 10.561 35.6627 10.561 36.6325C10.561 37.6023 11.3472 38.3885 12.3171 38.3885Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M19.6115 43.9521C20.8544 43.9521 21.8621 42.9445 21.8621 41.7015C21.8621 40.4585 20.8544 39.4509 19.6115 39.4509C18.3685 39.4509 17.3608 40.4585 17.3608 41.7015C17.3608 42.9445 18.3685 43.9521 19.6115 43.9521Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-                <path
-                  d="M35.3917 18.6185C37.3377 18.6185 38.9153 17.041 38.9153 15.095C38.9153 13.149 37.3377 11.5714 35.3917 11.5714C33.4457 11.5714 31.8682 13.149 31.8682 15.095C31.8682 17.041 33.4457 18.6185 35.3917 18.6185Z"
-                  fill="#D0D0D0"
-                  class="transition-colors group-hover:fill-[#0073FF]"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_270_57">
-                  <rect width="46" height="51" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <p class="transition-colors group-hover:text-[#0073FF]">Оформление</p>
-          </div>
-          <div
-            class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
-          >
-            <svg
-              width="42"
-              height="50"
-              viewBox="0 0 42 50"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.85352 10.4276L6.35596 45.7337C6.49898 46.9499 7.45038 49.3394 10.1118 49.1677C12.7731 48.996 26.173 49.0962 32.5402 49.1677C33.5418 49.0246 35.6309 48.1375 35.9743 45.7337C36.3177 43.3299 36.8328 21.1947 37.0474 10.4276"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-              <path
-                d="M0.561035 10.1057H41.2324"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-              <path
-                d="M13.2144 10.0876V3.99995C13.1028 3.21604 13.4557 1.62142 15.7598 1.51425C18.0639 1.40708 24.2215 1.4696 27.0123 1.51425C27.5258 1.58623 28.5662 2.18415 28.6198 4C28.6733 5.81585 28.6421 8.815 28.6198 10.0876"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-              <path
-                d="M12.8359 18.0681L13.4604 40.8865"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-              <path
-                d="M28.8607 17.8839L28.4175 40.8866"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-              <path
-                d="M21 17.8839V40.8866"
-                class="transition-colors group-hover:stroke-[#0073FF]"
-                stroke="#cccccc"
-                stroke-linecap="round"
-              />
-            </svg>
-            <p class="transition-colors group-hover:text-[#0073FF]">Утилизация</p>
           </div>
         </div>
+        <div
+          class="relative z-[100] px-[50px] pt-[59px] pb-[68px] border borderwhite/30 h-fit font-mono"
+        >
+          <p class="mb-[65px] text-white font-mulish text-[20px] font-[900]">
+            Перезвоним Вам и обсудим проект
+          </p>
+          <input
+            type="text"
+            class="mb-[44px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
+            placeholder="Ваше имя"
+          />
+          <input
+            type="text"
+            class="mb-[26px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
+            placeholder="Ваш телефон"
+          />
+          <p class="text-white pb-[22px]">
+            Нажимая «Отправить», вы соглашаетесь с <br />
+            политикой конфиденциальности
+          </p>
+          <ButtonForm />
+        </div>
       </div>
-    </section>
+      <div class="h-auto snap-start">
+        <section
+          class="section-1 flex flex-col items-center justify-start px-[65px] bg-neutral-100 py-[153px]"
+        >
+          <div class="max-w-[1000px] w-full mx-auto flex flex-col justify-center items-end">
+            <p
+              class="flex items-center gap-[20px] font-mulish font-[900] text-black text-[20px] w-full"
+            >
+              <span class="text-[30px] font-[800]">
+                <span class="text-[#0073FF] text-[25px]">1 /</span>
+                EXIM</span
+              >
+              <svg
+                width="40"
+                height="2"
+                viewBox="0 0 40 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 1H40" stroke="black" />
+              </svg>
+              Успех и качество с 2022 года
+            </p>
+            <p class="w-4/5 mr-[7px]">
+              Идейные соображения высшего порядка, а также новая модель организационной деятельности
+              представляет собой интересный эксперимент проверки систем массового участия.
+              Повседневная практика показывает, что новая модель организационной деятельности
+              представляет собой интересный эксперимент проверки соответствующий условий
+              активизации.
+            </p>
+          </div>
+        </section>
+        <section
+          class="section-1 flex flex-col items-center justify-start px-[65px] bg-white pt-[86px]"
+        >
+          <div
+            class="max-w-[1000px] w-full mx-auto flex flex-col justify-center items-start gap-[58px]"
+          >
+            <p
+              class="flex items-center gap-[20px] font-mulish font-[900] text-black text-[20px] w-full"
+            >
+              <span class="text-[30px] font-[800]">
+                <span class="text-[#0073FF] text-[25px]">2 /</span>
+                Услуги</span
+              >
+            </p>
+            <div
+              class="px-[44px] w-full grid grid-cols-4 grid-rows-2 gap-y-[10px] gap-x-[20px] text-[#D0D0D0] font-mulish font-[800] text-[20px]"
+            >
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="30"
+                  height="51"
+                  viewBox="0 0 30 51"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_66)">
+                    <path
+                      d="M13 1H17C23.9036 1 29.5 6.59644 29.5 13.5V38.5C29.5 44.8513 24.3513 50 18 50H12C5.64873 50 0.5 44.8513 0.5 38.5V13.5C0.5 6.59644 6.09644 1 13 1Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                    />
+                    <path
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      d="M0.5 16H29.5"
+                      stroke="#D0D0D0"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M15 1.5V16"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke="#D0D0D0"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_66">
+                      <rect width="30" height="50" fill="white" transform="translate(0 0.5)" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">3D Дизайн</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="43"
+                  height="44"
+                  viewBox="0 0 43 44"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_22)">
+                    <path
+                      d="M1.5 4.5L5 8L10.5 1"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M15.5 5.5H42.5"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M1 22.5L4.5 26L10 19"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M15 23.5H42"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M1 39.5L4.5 43L10 36"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M15 40.5H42"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_22">
+                      <rect width="43" height="44" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Планировка</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="47"
+                  height="57"
+                  viewBox="0 0 47 57"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_88)">
+                    <path
+                      d="M18.2207 7H43.7207C44.554 7.16667 46.2207 8 46.2207 10C46.2207 12 46.2207 25.8333 46.2207 32.5C46.054 33.3333 45.3207 35 43.7207 35C42.1207 35 27.7207 35 20.7207 35"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M29.7207 4V6.5"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M33.7207 35L39.2207 56"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M1.22086 32.5C1.62086 34.9 2.7207 35 3.72086 35H12.7207L13.2207 55C13.054 55.5 13.2207 56.5 15.2207 56.5C17.2207 56.5 17.7207 55.5 17.7207 55V21L22.7207 24L31.2207 19.5C32.054 19 33.5207 17.7 32.7207 16.5C31.9207 15.3 30.3874 15.6667 29.7207 16L22.7207 20C19.2207 17.5 17.1207 13.5 10.7207 13.5C4.3207 13.5 1.72081 17.5 1.22086 19.5C1.05419 22.8333 0.820862 30.1 1.22086 32.5Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M17.2209 35H12.7207M12.7207 35H3.72086C2.7207 35 1.62086 34.9 1.22086 32.5C0.820862 30.1 1.05419 22.8333 1.22086 19.5C1.72081 17.5 4.3207 13.5 10.7207 13.5C17.1207 13.5 19.2207 17.5 22.7207 20L29.7207 16C30.3874 15.6667 31.9207 15.3 32.7207 16.5C33.5207 17.7 32.054 19 31.2207 19.5L22.7207 24L17.7207 21V55C17.7207 55.5 17.2207 56.5 15.2207 56.5C13.2207 56.5 13.054 55.5 13.2207 55L12.7207 35Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M3.7207 55V35.5H8.7207L8.2207 55C8.05404 55.5 7.3207 56.5 5.7207 56.5C4.1207 56.5 3.7207 55.5 3.7207 55Z"
+                      fill="#D0D0D0"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF] group-hover:fill-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M10.2207 10C12.9821 10 15.2207 7.76142 15.2207 5C15.2207 2.23858 12.9821 0 10.2207 0C7.45928 0 5.2207 2.23858 5.2207 5C5.2207 7.76142 7.45928 10 10.2207 10Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_88">
+                      <rect width="47" height="57" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Проектирование</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_77)">
+                    <path
+                      d="M20.5 5.5L21.5 1H26.5L27.5 5.5"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M42.4999 20L46.9999 21V26L42.4185 27"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M5.5 27L1 26V21L5.5 20"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M28 42.5L27 47H22L21 42.5"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M13.5002 39.5L9.24305 42.4247L5.70752 38.8891L8.50045 34.5001"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M8.1819 13.1317L5.70703 9.24262L9.24256 5.70709L13.4999 8.50002"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M34.5 8.50002L38.9794 5.73315L42.3799 9.39872L39.761 13.1923"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M39.9498 34L42.4246 37.8891L38.8891 41.4246L35 38.9498"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M24 32.5C28.6944 32.5 32.5 28.6944 32.5 24C32.5 19.3056 28.6944 15.5 24 15.5C19.3056 15.5 15.5 19.3056 15.5 24C15.5 28.6944 19.3056 32.5 24 32.5Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                    />
+                    <path
+                      d="M24 42.5C34.2173 42.5 42.5 34.2173 42.5 24C42.5 13.7827 34.2173 5.5 24 5.5C13.7827 5.5 5.5 13.7827 5.5 24C5.5 34.2173 13.7827 42.5 24 42.5Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_77">
+                      <rect width="48" height="48" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Производство</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="52"
+                  height="40"
+                  viewBox="0 0 52 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.60753 34.4856H3.24523C2.35585 34.5997 0.577092 34.3625 0.577092 32.5017C0.577092 30.6408 0.577092 12.0234 0.577092 2.94728C0.554305 2.24037 0.946552 0.826538 2.69784 0.826538C4.44912 0.826538 20.3939 0.826538 28.1474 0.826538C28.8543 0.87215 30.2681 1.36016 30.2681 2.94728C30.2681 4.53441 30.2228 24.7709 30.2002 34.6908"
+                    stroke="#D9D9D9"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                  />
+                  <path
+                    d="M30.2002 9.24121H44.498C45.1982 9.2412 45.2409 9.24124 45.7979 10.5411C46.4547 12.0735 49.5379 20.4837 50.9973 24.4973V32.8437C51.0429 33.2769 50.5584 34.4856 49.1502 34.4856C47.4933 34.4856 45.3874 34.5996 44.498 34.4856"
+                    stroke="#D9D9D9"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                  />
+                  <path
+                    d="M19.1719 34.6008H35.563"
+                    stroke="#D9D9D9"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                  />
+                  <circle
+                    cx="14.3707"
+                    cy="34.6908"
+                    r="4.30139"
+                    stroke="#D9D9D9"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                  />
+                  <circle
+                    cx="40.3644"
+                    cy="34.6908"
+                    r="4.30139"
+                    stroke="#D9D9D9"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                  />
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Перевозка</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="41"
+                  height="43"
+                  viewBox="0 0 41 43"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_118)">
+                    <path
+                      d="M34.8447 0.923462H6.84473C3.80716 0.923462 1.34473 3.3859 1.34473 6.42346V37.0079C1.34473 40.0454 3.80716 42.5079 6.84473 42.5079H34.8447C37.8823 42.5079 40.3447 40.0454 40.3447 37.0079V6.42346C40.3447 3.3859 37.8823 0.923462 34.8447 0.923462Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                    />
+                    <path
+                      d="M1.2832 14.9631H40.4247"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M1.77197 29.3455H40.4248"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M13.3613 1.45801V14.6389"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M28.8115 1.45801V14.855"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M13.4697 29.3455V41.7572"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M28.5952 29.3455V41.9733"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M20.8447 15.1792V29.3455"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_118">
+                      <rect width="41" height="43" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Монтаж</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="46"
+                  height="51"
+                  viewBox="0 0 46 51"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_270_57)">
+                    <path
+                      d="M31.8681 40.4516C32.3619 45.5132 30.386 47.9997 29.3364 48.6102C21.01 53.4531 8.31869 47.6348 3.78204 38.6262C0.405771 31.9219 -2.82626 17.0188 7.97839 7.44367C21.5273 -4.5634 35.1285 2.82552 39.4503 5.99673C43.5987 9.04073 49.4345 20.6836 40.5355 24.9522C31.6366 29.2208 31.2509 34.1246 31.8681 40.4516Z"
+                      stroke="#D0D0D0"
+                      class="transition-colors group-hover:stroke-[#0073FF]"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M24.1245 12.3132C25.3707 12.3132 26.3809 11.303 26.3809 10.0568C26.3809 8.81068 25.3707 7.80048 24.1245 7.80048C22.8784 7.80048 21.8682 8.81068 21.8682 10.0568C21.8682 11.303 22.8784 12.3132 24.1245 12.3132Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M15.161 14.0439C16.1169 14.0439 16.8918 13.269 16.8918 12.3131C16.8918 11.3572 16.1169 10.5823 15.161 10.5823C14.2051 10.5823 13.4302 11.3572 13.4302 12.3131C13.4302 13.269 14.2051 14.0439 15.161 14.0439Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M9.41199 21.4001C10.7093 21.4001 11.761 20.3484 11.761 19.0511C11.761 17.7538 10.7093 16.7021 9.41199 16.7021C8.11467 16.7021 7.06299 17.7538 7.06299 19.0511C7.06299 20.3484 8.11467 21.4001 9.41199 21.4001Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M8.42261 30.4506C9.65163 30.4506 10.6479 29.4543 10.6479 28.2253C10.6479 26.9963 9.65163 25.9999 8.42261 25.9999C7.19358 25.9999 6.19727 26.9963 6.19727 28.2253C6.19727 29.4543 7.19358 30.4506 8.42261 30.4506Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M12.3171 38.3885C13.2869 38.3885 14.0731 37.6023 14.0731 36.6325C14.0731 35.6627 13.2869 34.8765 12.3171 34.8765C11.3472 34.8765 10.561 35.6627 10.561 36.6325C10.561 37.6023 11.3472 38.3885 12.3171 38.3885Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M19.6115 43.9521C20.8544 43.9521 21.8621 42.9445 21.8621 41.7015C21.8621 40.4585 20.8544 39.4509 19.6115 39.4509C18.3685 39.4509 17.3608 40.4585 17.3608 41.7015C17.3608 42.9445 18.3685 43.9521 19.6115 43.9521Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                    <path
+                      d="M35.3917 18.6185C37.3377 18.6185 38.9153 17.041 38.9153 15.095C38.9153 13.149 37.3377 11.5714 35.3917 11.5714C33.4457 11.5714 31.8682 13.149 31.8682 15.095C31.8682 17.041 33.4457 18.6185 35.3917 18.6185Z"
+                      fill="#D0D0D0"
+                      class="transition-colors group-hover:fill-[#0073FF]"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_270_57">
+                      <rect width="46" height="51" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <p class="transition-colors group-hover:text-[#0073FF]">Оформление</p>
+              </div>
+              <div
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+              >
+                <svg
+                  width="42"
+                  height="50"
+                  viewBox="0 0 42 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.85352 10.4276L6.35596 45.7337C6.49898 46.9499 7.45038 49.3394 10.1118 49.1677C12.7731 48.996 26.173 49.0962 32.5402 49.1677C33.5418 49.0246 35.6309 48.1375 35.9743 45.7337C36.3177 43.3299 36.8328 21.1947 37.0474 10.4276"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M0.561035 10.1057H41.2324"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M13.2144 10.0876V3.99995C13.1028 3.21604 13.4557 1.62142 15.7598 1.51425C18.0639 1.40708 24.2215 1.4696 27.0123 1.51425C27.5258 1.58623 28.5662 2.18415 28.6198 4C28.6733 5.81585 28.6421 8.815 28.6198 10.0876"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12.8359 18.0681L13.4604 40.8865"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M28.8607 17.8839L28.4175 40.8866"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M21 17.8839V40.8866"
+                    class="transition-colors group-hover:stroke-[#0073FF]"
+                    stroke="#cccccc"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <p class="transition-colors group-hover:text-[#0073FF]">Утилизация</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
     <section
       class="section-1 flex flex-col items-center justify-start px-[65px] bg-white pt-[86px] pb-[56px]"
     >
@@ -1359,7 +1363,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 // Import Swiper styles
 
-const scrollContainer = ref(null)
 export default {
   data() {
     return {
@@ -1466,24 +1469,7 @@ export default {
       return this.fiveBlock.find((item) => item.active)
     }
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
   methods: {
-    handleScroll() {
-      console.log(window.innerHeight)
-      if (window.scrollY > 0 && window.scrollY < 30) {
-        console.log('sdfwe')
-        window.scrollTo({
-          top: window.innerHeight,
-
-          behavior: 'smooth'
-        })
-      }
-    },
     onSwiper(swiper) {
       this.swiper = swiper
       this.swiper.on('slideChange', () => {
