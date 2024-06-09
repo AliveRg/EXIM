@@ -3,93 +3,93 @@ import ButtonForm from '@/components/ButtonComponent.vue'
 </script>
 
 <template>
-  <div class="scroll-container">
-    <div
-      class="first-sect z-10 pt-[100px] h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
-    >
-      <div class="w-1/2 flex flex-col relative first-sect">
-        <Swiper
-          @swiper="onSwiper1"
-          ref="swiper1"
-          :slides-per-view="1"
-          :space-between="150"
-          :autoplay="{ delay: 2500, disableOnInteraction: false }"
-          :modules="modules"
-          class="swiper swiper1 m-0 w-full"
-        >
-          <!-- Additional required wrapper -->
-
-          <!-- Slides -->
-          <swiper-slide>
-            <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-            <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-              НАЙДЁМ <br />
-              КРЕАТИВНОЕ <br />
-              РЕШЕНИЕ
-            </p>
-            <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-          </swiper-slide>
-          <swiper-slide>
-            <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-            <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-              НАЙДЁМ <br />
-              КРЕАТИВНОЕ <br />
-              РЕШЕНИЕ
-            </p>
-            <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-          </swiper-slide>
-          <swiper-slide>
-            <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
-            <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-              НАЙДЁМ <br />
-              КРЕАТИВНОЕ <br />
-              РЕШЕНИЕ
-            </p>
-            <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
-          </swiper-slide>
-        </Swiper>
-
-        <p class="mb-[100px] text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-        <div class="flex justify-start gap-[20px] custom-pagination left-0">
-          <svg
-            v-for="(slide, index) in slides1"
-            :key="index"
-            @click="goToSlide1(index)"
-            xmlns="http://www.w3.org/2000/svg"
-            width="60"
-            height="2"
-            viewBox="0 0 60 2"
-            fill="none"
-          >
-            <path d="M0 1H60" :stroke="index == activePaginationIndex1 ? '#FFCD00' : '#ffffff'" />
-          </svg>
-        </div>
-      </div>
-      <div
-        class="relative z-[100] px-[50px] pt-[59px] pb-[68px] border borderwhite/30 h-fit font-mono"
+  <div
+    ref="firstSection"
+    class="z-10 pt-[100px] h-screen font-mono text-white w-full flex items-center justify-between pl-[46px] pr-[56px] vvgBack bg-no-repeat bg-center bg-cover relative bgLandHole"
+  >
+    <div class="w-1/2 flex flex-col relative">
+      <Swiper
+        @swiper="onSwiper1"
+        ref="swiper1"
+        :slides-per-view="1"
+        :space-between="150"
+        :autoplay="{ delay: 2500, disableOnInteraction: false }"
+        :modules="modules"
+        class="swiper swiper1 m-0 w-full"
       >
-        <p class="mb-[65px] text-white font-mulish text-[20px] font-[900]">
-          Перезвоним Вам и обсудим проект
-        </p>
-        <input
-          type="text"
-          class="mb-[44px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
-          placeholder="Ваше имя"
-        />
-        <input
-          type="text"
-          class="mb-[26px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
-          placeholder="Ваш телефон"
-        />
-        <p class="text-white pb-[22px]">
-          Нажимая «Отправить», вы соглашаетесь с <br />
-          политикой конфиденциальности
-        </p>
-        <ButtonForm />
+        <!-- Additional required wrapper -->
+
+        <!-- Slides -->
+        <swiper-slide>
+          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+            НАЙДЁМ <br />
+            КРЕАТИВНОЕ <br />
+            РЕШЕНИЕ
+          </p>
+          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+        </swiper-slide>
+        <swiper-slide>
+          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+            НАЙДЁМ <br />
+            КРЕАТИВНОЕ <br />
+            РЕШЕНИЕ
+          </p>
+          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+        </swiper-slide>
+        <swiper-slide>
+          <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+          <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
+            НАЙДЁМ <br />
+            КРЕАТИВНОЕ <br />
+            РЕШЕНИЕ
+          </p>
+          <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+        </swiper-slide>
+      </Swiper>
+
+      <p class="mb-[100px] text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
+      <div class="flex justify-start gap-[20px] custom-pagination left-0">
+        <svg
+          v-for="(slide, index) in slides1"
+          :key="index"
+          @click="goToSlide1(index)"
+          xmlns="http://www.w3.org/2000/svg"
+          width="60"
+          height="2"
+          viewBox="0 0 60 2"
+          fill="none"
+        >
+          <path d="M0 1H60" :stroke="index == activePaginationIndex1 ? '#FFCD00' : '#ffffff'" />
+        </svg>
       </div>
     </div>
+    <div
+      class="relative z-[100] px-[50px] pt-[59px] pb-[68px] border borderwhite/30 h-fit font-mono"
+    >
+      <p class="mb-[65px] text-white font-mulish text-[20px] font-[900]">
+        Перезвоним Вам и обсудим проект
+      </p>
+      <input
+        type="text"
+        class="mb-[44px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
+        placeholder="Ваше имя"
+      />
+      <input
+        type="text"
+        class="mb-[26px] border-b border-transparent border-b-white bg-transparent outline-none p-1 placeholder-white w-full text-[15px]"
+        placeholder="Ваш телефон"
+      />
+      <p class="text-white pb-[22px]">
+        Нажимая «Отправить», вы соглашаетесь с <br />
+        политикой конфиденциальности
+      </p>
+      <ButtonForm />
+    </div>
   </div>
-  <main class="">
+
+  <main ref="mainContent">
     <section
       class="section-1 flex flex-col items-center justify-start px-[65px] bg-neutral-100 py-[153px]"
     >
@@ -1359,6 +1359,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 // Import Swiper styles
 
+const scrollContainer = ref(null)
 export default {
   data() {
     return {
@@ -1465,7 +1466,24 @@ export default {
       return this.fiveBlock.find((item) => item.active)
     }
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
+    handleScroll() {
+      console.log(window.innerHeight)
+      if (window.scrollY > 0 && window.scrollY < 30) {
+        console.log('sdfwe')
+        window.scrollTo({
+          top: window.innerHeight,
+
+          behavior: 'smooth'
+        })
+      }
+    },
     onSwiper(swiper) {
       this.swiper = swiper
       this.swiper.on('slideChange', () => {
@@ -1521,16 +1539,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.scroll-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
-
-.first-sect {
-  height: 100vh;
-  scroll-snap-align: start;
-}
 .custom-pagination1 div {
   width: 10px;
   height: 10px;
