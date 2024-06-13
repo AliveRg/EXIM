@@ -1336,13 +1336,16 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                   </span>
                 </div>
               </button>
-              <transition name="accordion">
-                <div v-show="activeQuestionId === item.id" class="overflow-hidden max-h-[400px]">
-                  <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
-                    {{ item.answer }}
-                  </div>
+              <!-- <transition name="accordion"> -->
+              <div
+                :class="activeQuestionId === item.id ? 'max-h-[100px]' : 'max-h-[0]'"
+                class="overflow-hidden transition-all duration-[600] delay-0"
+              >
+                <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
+                  {{ item.answer }}
                 </div>
-              </transition>
+              </div>
+              <!-- </transition> -->
             </div>
           </transition-group>
         </div>
@@ -1489,9 +1492,10 @@ export default {
     toggleAnswer(questionId) {
       if (this.activeQuestionId !== questionId) {
         this.activeQuestionId = null
-        setTimeout(() => {
-          this.activeQuestionId = questionId
-        }, 300) // Задержка для завершения анимации закрытия
+        this.activeQuestionId = questionId
+        // setTimeout(() => {
+
+        // }) // Задержка для завершения анимации закрытия
       }
     },
     onSwiper1(swiper) {
@@ -1636,10 +1640,14 @@ export default {
 .accordion-enter-active,
 .accordion-leave-active {
   transition:
-    max-height 0.3s ease,
-    opacity 0.3s ease;
+    max-height 1s ease,
+    opacity 1s ease;
 }
-.accordion-enter, .accordion-leave-to /* .accordion-leave-active в версии <2.1.8 */ {
+.accordion-leave-to /* .accordion-leave-active в версии <2.1.8 */ {
+  max-height: 0;
+  opacity: 0;
+}
+.accordion-enter /* .accordion-leave-active в версии <2.1.8 */ {
   max-height: 0;
   opacity: 0;
 }
