@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
   <header class="flex flex-col items-center justify-start">
-    <div class="z-30 fixed w-full px-[63px] backdrop-blur-md">
+    <div class="z-30 fixed w-full px-[63px] backdrop-blur-[3px]">
       <div
         class="mt-[21px] px-[86px] py-[45px] bg-white flex justify-between items-center gap-[50px] font-mulish text-neutral-600 transition-all text-[15px] rounded-[15px] shadow"
       >
