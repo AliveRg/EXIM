@@ -54,13 +54,12 @@
           </ul>
         </div>
         <div class=""><img class="w-[283px]" src="@/assets/img/logoFoot.png" alt="" /></div>
-        <div class="text-end">
+        <div class="text-end h-[217px] justify-self-start">
           <ul class="flex flex-col gap-[15px] font-mono text-[15px] text-[#D0D0D0]">
             <li class="font-mulish text-[20px] font-[600] text-white">Полезные ссылки</li>
             <li class="hover:text-[#FFCD00]"><a href="">Заказать звонок</a></li>
             <li class="hover:text-[#FFCD00]"><a href="">Скачать презентацию</a></li>
             <li class="hover:text-[#FFCD00]"><a href="">Политика ОПД</a></li>
-            <li class="hover:text-[#FFCD00]"><a href="">Заполнить бриф</a></li>
             <li class="hover:text-[#FFCD00]"><a href="">Заполнить бриф</a></li>
           </ul>
         </div>

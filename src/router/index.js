@@ -6,6 +6,7 @@ import UniversalView from '../views/UniversalView.vue'
 import ServiceView from '../views/ServiceView.vue'
 import ContactsView from '../views/ContactsView.vue'
 import BreefView from '../views/BreefView.vue'
+import NewsView from '../views/NewsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,11 @@ const router = createRouter({
       path: '/service',
       name: 'service',
       component: ServiceView
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: NewsView
     },
     {
       path: '/universal',

@@ -31,22 +31,22 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
             </swiper-slide>
             <swiper-slide>
-              <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+              <p class="text-[30px] mb-[14px]">Нужен стенд на выставку?</p>
               <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-                НАЙДЁМ <br />
-                КРЕАТИВНОЕ <br />
-                РЕШЕНИЕ
+                СДЕЛАЕМ <br />
+                ПО ВАШЕМУ <br />
+                ПРОЕКТУ
               </p>
-              <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+              <p class="mb-[3px] font-mono text-[25px] font-[400]">И поможем разработать</p>
             </swiper-slide>
             <swiper-slide>
-              <p class="text-[30px] mb-[14px]">Готовитесь к выставке?</p>
+              <p class="text-[30px] mb-[14px]">Ищите застройщика?</p>
               <p class="mb-[41px] text-[90px] font-mulish font-[900] uppercase">
-                НАЙДЁМ <br />
-                КРЕАТИВНОЕ <br />
-                РЕШЕНИЕ
+                выполним <br />
+                монтаж <br />
+                под ключ
               </p>
-              <p class="mb-[3px] font-mono text-[25px] font-[400]">Для вашего стенда</p>
+              <p class="mb-[3px] font-mono text-[25px] font-[400]">Работаем о договору</p>
             </swiper-slide>
           </Swiper>
 
@@ -112,12 +112,14 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               </svg>
               Успех и качество с 2022 года
             </p>
-            <p class="w-4/5 mr-[7px]">
-              Идейные соображения высшего порядка, а также новая модель организационной деятельности
-              представляет собой интересный эксперимент проверки систем массового участия.
-              Повседневная практика показывает, что новая модель организационной деятельности
-              представляет собой интересный эксперимент проверки соответствующий условий
-              активизации.
+            <p class="w-4/5 mr-[7px] font-mono">
+              Мы беремся за проекты любой сложности, гарантируя высокое качество и индивидуальный
+              подход к каждому заказу. Мы строим любые стенды в Москве, работая с самыми крупными
+              выставками. <br />
+              <br />
+              Наша команда профессионалов полностью берет на себя все процессы: от создания макета
+              до полной реализации проекта. Сотрудничая с EXIM, вы можете быть уверены, что ваш
+              стенд будет выполнен на высшем уровне и станет ярким акцентом любого мероприятия.
             </p>
           </div>
         </section>
@@ -622,155 +624,173 @@ import ButtonForm from '@/components/ButtonComponent.vue'
       <div
         class="max-w-[1000px] w-full mx-auto flex flex-col justify-center items-start gap-[36px]"
       >
-        <div class="w-full flex items-center justify-center">
-          <div class="w-1/2">
-            <div class="" v-for="item in 5">
-              <!-- <transition name="fade1" mode="out-in"> -->
-              <div>
-                <img
-                  v-if="item == activePaginationIndex"
-                  class="w-full"
-                  src="@/assets/img/videoPrew.jpeg"
-                  alt=""
-                />
-                <img
-                  v-if="item - 1 == activePaginationIndex && item - 1 == 0"
-                  class="w-full h-[329px]"
-                  src="@/assets/img/PrewUniv.png"
-                  alt=""
-                />
+        <Swiper
+          @swiper="onSwiper"
+          @slideChange="indexRed"
+          ref="swiper"
+          :slides-per-view="1"
+          :space-between="150"
+          :autoplay="{ delay: 20500, disableOnInteraction: false }"
+          :modules="modules"
+          class="swiper swiper2 m-0 w-full flex items-center justify-center"
+        >
+          <swiper-slide class="swiper-slide">
+            <div class="flex items-start justify-center text-white">
+              <div class="w-1/2">
+                <div>
+                  <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+                </div>
               </div>
-              <!-- </transition> -->
+
+              <div class="w-1/2 pl-[50px] py-[10px]">
+                <p
+                  class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
+                >
+                  <span class="text-[20px] font-[900]">
+                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
+                    ТехноЭкспо</span
+                  >
+                </p>
+                <p class="font-mono text-[15px] mb-[20px]">
+                  "Мы очень довольны работой компании EXIM! Команда продемонстрировала высочайший
+                  профессионализм и творческий подход к нашему проекту. <br />
+                  Особо хочется отметить мастеров на стройке, которые всегда были на связи и
+                  оперативно решали любые вопросы.
+                  <br />
+                  Каждый наш запрос был учтен, и все работы выполнены в срок. Спасибо, EXIM, за
+                  превосходный стенд!""
+                </p>
+                <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
+                <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
+              </div>
             </div>
-          </div>
-
-          <div class="w-1/2 pl-[50px]">
-            <Swiper
-              @swiper="onSwiper"
-              @slideChange="indexRed"
-              ref="swiper"
-              :slides-per-view="1"
-              :space-between="150"
-              :autoplay="{ delay: 2500, disableOnInteraction: false }"
-              :modules="modules"
-              class="swiper swiper2 m-0 w-full"
-            >
-              <!-- Additional required wrapper -->
-
-              <!-- Slides -->
-              <swiper-slide
-                class="swiper-slide flex flex-col items-start justify-center text-white"
-              >
+          </swiper-slide>
+          <swiper-slide class="swiper-slide">
+            <div class="flex items-start justify-center text-white">
+              <div class="w-1/2">
+                <div>
+                  <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="w-1/2 pl-[50px] py-[10px]">
                 <p
                   class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
                 >
                   <span class="text-[20px] font-[900]">
-                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
-                    Lenovo</span
+                    <span class="text-[#FFCD00] text-[15px]">2 /</span>
+                    Индустрия Плюс</span
                   >
                 </p>
                 <p class="font-mono text-[15px] mb-[20px]">
-                  "Мы признательны команде Exim за
+                  "Благодарим EXIM за высокий уровень профессионализма и индивидуальный подход к
+                  нашему проекту.
                   <br />
-                  профессионализм, индивидуальный подход, <br />
-                  гибкость и оперативность при возникающих в
+                  Команда проявила гибкость и оперативность в решении всех возникающих вопросов.
+                  Мастера на площадке были невероятно внимательны к деталям и всегда готовы помочь.
                   <br />
-                  процессе работы вопросов! Спасибо, Exim!
+                  Сотрудничество с EXIM было настоящим удовольствием. <br />
+                  Спасибо!"
                 </p>
                 <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
                 <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-              </swiper-slide>
-              <swiper-slide
-                class="swiper-slide flex flex-col items-start justify-center text-white"
-              >
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="swiper-slide">
+            <div class="flex items-start justify-center text-white">
+              <div class="w-1/2">
+                <div>
+                  <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="w-1/2 pl-[50px] py-[10px]">
                 <p
                   class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
                 >
                   <span class="text-[20px] font-[900]">
-                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
-                    Lenovo</span
+                    <span class="text-[#FFCD00] text-[15px]">3 /</span>
+                    МегаТех</span
                   >
                 </p>
                 <p class="font-mono text-[15px] mb-[20px]">
-                  "Мы признательны команде Exim за
+                  "Мы признательны команде EXIM за их профессионализм и внимательное отношение к
+                  деталям.
                   <br />
-                  профессионализм, индивидуальный подход, <br />
-                  гибкость и оперативность при возникающих в
+                  Каждый этап работы был выполнен на высшем уровне, а возникающие в процессе вопросы
+                  решались быстро и эффективно.
                   <br />
-                  процессе работы вопросов! Спасибо, Exim!
+                  Мастера на стройке всегда были на связи, что очень помогало в работе. Огромное
+                  спасибо, EXIM, за отличный стенд!"
                 </p>
                 <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
                 <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-              </swiper-slide>
-              <swiper-slide
-                class="swiper-slide flex flex-col items-start justify-center text-white"
-              >
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="swiper-slide">
+            <div class="flex items-start justify-center text-white">
+              <div class="w-1/2">
+                <div>
+                  <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="w-1/2 pl-[50px] py-[10px]">
                 <p
                   class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
                 >
                   <span class="text-[20px] font-[900]">
-                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
-                    Lenovo</span
+                    <span class="text-[#FFCD00] text-[15px]">4 /</span>
+                    ЭкоСтрой</span
                   >
                 </p>
                 <p class="font-mono text-[15px] mb-[20px]">
-                  "Мы признательны команде Exim за
+                  "EXIM превзошла наши ожидания! <br />
+                  Профессионализм, индивидуальный подход, гибкость и оперативность в решении
+                  вопросов
                   <br />
-                  профессионализм, индивидуальный подход, <br />
-                  гибкость и оперативность при возникающих в
+                  – всё это про команду EXIM.
                   <br />
-                  процессе работы вопросов! Спасибо, Exim!
+                  Особая благодарность мастерам на стройке, которые были всегда на связи и работали
+                  слаженно и эффективно.
+                  <br />
+                  Мы очень довольны результатом и благодарим за превосходную работу. Спасибо, EXIM!"
                 </p>
                 <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
                 <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-              </swiper-slide>
-              <swiper-slide
-                class="swiper-slide flex flex-col items-start justify-center text-white"
-              >
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="swiper-slide">
+            <div class="flex items-start justify-center text-white">
+              <div class="w-1/2">
+                <div>
+                  <img class="w-full" src="@/assets/img/videoPrew.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="w-1/2 pl-[50px] py-[10px]">
                 <p
                   class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
                 >
                   <span class="text-[20px] font-[900]">
-                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
-                    Lenovo</span
+                    <span class="text-[#FFCD00] text-[15px]">5 /</span>
+                    Бизнес Лидер</span
                   >
                 </p>
                 <p class="font-mono text-[15px] mb-[20px]">
-                  "Мы признательны команде Exim за
+                  "Хотим выразить благодарность компании EXIM за их профессионализм и оперативность.
                   <br />
-                  профессионализм, индивидуальный подход, <br />
-                  гибкость и оперативность при возникающих в
+                  Индивидуальный подход и гибкость команды помогли нам создать идеальный стенд.
                   <br />
-                  процессе работы вопросов! Спасибо, Exim!
+                  Мастера на стройке всегда были на связи и работали с большим энтузиазмом.
+                  <br />
+                  Спасибо, EXIM, за великолепное сотрудничество!"
                 </p>
                 <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
                 <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-              </swiper-slide>
-              <swiper-slide
-                class="swiper-slide flex flex-col items-start justify-center text-white"
-              >
-                <p
-                  class="flex items-center gap-[20px] font-mulish font-[900] text-[20px] w-full mb-[20px]"
-                >
-                  <span class="text-[20px] font-[900]">
-                    <span class="text-[#FFCD00] text-[15px]">1 /</span>
-                    Lenovo</span
-                  >
-                </p>
-                <p class="font-mono text-[15px] mb-[20px]">
-                  "Мы признательны команде Exim за
-                  <br />
-                  профессионализм, индивидуальный подход, <br />
-                  гибкость и оперативность при возникающих в
-                  <br />
-                  процессе работы вопросов! Спасибо, Exim!
-                </p>
-                <p class="text-[15px] font-[700] mb-[15px]">Антон, директор компании</p>
-                <p class="text-[#FFCD00] font-mono text-[15px] font-[400]">Подробнее →</p>
-              </swiper-slide>
-            </Swiper>
-          </div>
-        </div>
+              </div>
+            </div>
+          </swiper-slide>
+        </Swiper>
       </div>
       <div class="flex items-center justify-center gap-[200px] w-1/2 mt-[16px]">
         <div
@@ -780,7 +800,6 @@ import ButtonForm from '@/components/ButtonComponent.vue'
         >
           <transition name="fade1" mode="out-in">
             <svg
-              v-if="hovered"
               class="swiper-button-prev2 transition-all"
               width="41"
               height="9"
@@ -788,11 +807,23 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M40.4609 4.66898H0.941895" stroke="white" stroke-linecap="round" />
-              <path d="M0.941895 4.64441L4.27539 0.999054" stroke="white" stroke-linecap="round" />
-              <path d="M0.942047 4.64432L4.5874 7.97781" stroke="white" stroke-linecap="round" />
+              <path
+                d="M40.4609 4.66898H0.941895"
+                :stroke="hovered ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
+              <path
+                d="M0.941895 4.64441L4.27539 0.999054"
+                :stroke="hovered ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
+              <path
+                d="M0.942047 4.64432L4.5874 7.97781"
+                :stroke="hovered ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
             </svg>
-            <svg
+            <!-- <svg
               v-else
               width="62"
               height="9"
@@ -803,7 +834,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               <path d="M61.0327 5.08426L1.03271 5.08426" stroke="#FFCD00" stroke-linecap="round" />
               <path d="M1.03271 5.05969L4.36621 1.41434" stroke="#FFCD00" stroke-linecap="round" />
               <path d="M1.03287 5.0596L4.67822 8.3931" stroke="#FFCD00" stroke-linecap="round" />
-            </svg>
+            </svg> -->
           </transition>
         </div>
         <div class="flex custom-pagination">
@@ -823,19 +854,30 @@ import ButtonForm from '@/components/ButtonComponent.vue'
         <div class="p-5 min-w-[102px]" @mouseenter="hovered1 = false" @mouseleave="hovered1 = true">
           <transition name="fade1" mode="out-in">
             <svg
-              v-if="hovered1"
               idth="41"
               height="9"
               viewBox="0 0 41 9"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M0.490234 4.48855L40.0093 4.48856" stroke="white" stroke-linecap="round" />
-              <path d="M40.0093 4.51312L36.6758 8.15848" stroke="white" stroke-linecap="round" />
-              <path d="M40.0091 4.51321L36.3638 1.17972" stroke="white" stroke-linecap="round" />
+              <path
+                d="M0.490234 4.48855L40.0093 4.48856"
+                :stroke="hovered1 ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
+              <path
+                d="M40.0093 4.51312L36.6758 8.15848"
+                :stroke="hovered1 ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
+              <path
+                d="M40.0091 4.51321L36.3638 1.17972"
+                :stroke="hovered1 ? '#FFFFFF' : '#FFCD00'"
+                stroke-linecap="round"
+              />
             </svg>
 
-            <svg
+            <!-- <svg
               v-else
               width="62"
               height="9"
@@ -845,8 +887,8 @@ import ButtonForm from '@/components/ButtonComponent.vue'
             >
               <path d="M1.12598 3.90383L61.126 3.90384" stroke="#FFCD00" stroke-linecap="round" />
               <path d="M61.126 3.92841L57.7925 7.57376" stroke="#FFCD00" stroke-linecap="round" />
-              <path d="M61.1258 3.9285L57.4805 0.595001" stroke="#FFCD00" stroke-linecap="round" />
-            </svg>
+              <path d="M61.1258 3.9285L57.4805 0.595001" stroke="#FFCD00" stroke-linecap="round" /> -->
+            <!-- </svg> -->
           </transition>
         </div>
       </div>
@@ -1203,16 +1245,33 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               Последние новости</span
             >
           </p>
-          <p class="min-w-fit text-[#898989] text-[15px] font-mono">Все новости →</p>
+          <router-link
+            to="/news"
+            class="min-w-fit text-[#898989] hover:text-[#0073FF] transition-all text-[15px] font-mono"
+            >Все новости →</router-link
+          >
         </div>
       </div>
       <div class="flex justify-between flex-wrap gap-[21px]">
-        <div v-for="item in 3" :key="item" class="flex flex-col">
-          <div class="border border-[#E2E2E2] pt-[14px] pb-[11px] px-[21px]">
-            <p class="font-mulish text-[20px] font-[800]">YKK GROUP</p>
-            <p class="font-mono text-[15px] font-[400]">Промышленность</p>
+        <div v-for="item in 3" :key="item" class="flex flex-col group">
+          <div class="">
+            <div
+              class="border border-[#E2E2E2] group-hover:border-[#979797] border-b-[0px] transition-all pt-[14px] pb-[11px] px-[21px]"
+            >
+              <p class="font-mulish text-[20px] font-[800]">Выставка “Интерткань”</p>
+              <p class="font-mono text-[15px] font-[400]">Промышленность</p>
+            </div>
+
+            <div class="relative overflow-hidden w-[319px] h-[auto]">
+              <img
+                src="@/assets/img/prewCont.jpeg"
+                class="w-full h-full transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+                alt=""
+              />
+            </div>
+            <p></p>
+            <p></p>
           </div>
-          <img src="@/assets/img/prewCont.jpeg" class="w-[319px]" alt="" />
         </div>
       </div>
     </section>
@@ -1339,7 +1398,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               <!-- <transition name="accordion"> -->
               <div
                 :class="activeQuestionId === item.id ? 'max-h-[100px]' : 'max-h-[0]'"
-                class="overflow-hidden transition-all duration-[600] delay-0"
+                class="overflow-hidden transition-all duration-[700] delay-0"
               >
                 <div class="py-2 font-mono text-[15px] text-[#4D4D4D]">
                   {{ item.answer }}
@@ -1383,37 +1442,37 @@ export default {
         {
           id: 1,
           content:
-            ' высылаем вам форму брифа, в котором необходимоуказать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'Чтобы получить техническое задание, мы направляем вам форму брифа. В этой форме нужно указать выставочную площадку, тип застройки, маркетинговые и имиджевые цели, а также подробно описать, что должно быть на стенде, включая мультимедийное оборудование. Не забудьте обозначить рамки бюджета на строительство стенда.',
           active: true
         },
         {
           id: 2,
           content:
-            ' в котором необходимоуказать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'При необходимости мы можем предложить обсудить детали выставочного проекта на личной встрече с нашим представителем.',
           active: false
         },
         {
           id: 3,
           content:
-            'чения технического задания мы высылаем вам форму брифа, в котором необходимоуказать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'Мы представляем вам 3D дизайн стенда, разработанный с учетом всех нюансов, указанных в брифе. Презентация включает виды стенда со всех сторон — фронтальная и боковые стороны, вид сверху, размерные сетки высот и площади стенда. При необходимости вносятся корректировки.',
           active: false
         },
         {
           id: 4,
           content:
-            'ать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'После окончательного согласования дизайна, объема мультимедийного оснащения и световой схемы мы составляем точную смету проекта. Затем подписываем договор, который включает три приложения (дизайн-проект, смета, техническое задание). После подписания договора заказчик вносит предоплату согласно его условиям.',
           active: false
         },
         {
           id: 5,
           content:
-            'Дляифа, в котором необходимоуказать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'Все элементы стенда изготавливаются заранее и доставляются на выставочную площадку к началу монтажа вместе с дополнительным оборудованием (техническое оснащение, мебель и т.д.). В процессе монтажа на стенде всегда присутствует наш сотрудник, ответственный за оперативное решение всех возникающих вопросов.',
           active: false
         },
         {
           id: 6,
           content:
-            'Длвысылаем вам форму брифа, в котором необходимоуказать выставочную площадку, тип застройки, ваши маркетинговые и имиджевые цели,детально рассказать о том, что должно быть на стенде, включая требуемое мультимедийное оборудование. Обязательно обозначить рамки вашего бюджета на строительство стенда',
+            'По завершении монтажа стенда заказчик подписывает Акт приема-передачи. После демонтажа подписывается Акт выполненных работ, и заказчик оплачивает оставшуюся сумму по договору.',
           active: false
         }
       ],
@@ -1422,21 +1481,21 @@ export default {
           id: 1,
           question: 'Сколько стоит выставочный стенд?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            'Компания EXIM создаёт уникальные выставочные стенды под заказ. Чтобы узнать стоимость, заполните бриф на нашем сайте.',
           isOpen: false
         },
         {
           id: 2,
-          question: 'Готовитесь к мероприятию или выставке?',
+          question: 'Срочное выполнение проекта застройки - это возможно?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            ' Наша команда способна выполнить проект в течение нескольких дней. Обратитесь к нам, и опытные менеджеры быстро проведут оценку и организуют срочную застройку.',
           isOpen: false
         },
         {
           id: 3,
           question: 'Возможно ли застроить стенд по готовому дизайн-проекту?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            'Да, мы можем реализовать ваш дизайн-проект или застроить стенд на основе вашего готового 3D-макета. Узнайте у наших менеджеров все технические требования.',
 
           isOpen: false
         },
@@ -1444,24 +1503,23 @@ export default {
           id: 4,
           question: 'Можно ли заказать только дизайн выставочного стенда?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            'Да, мы предлагаем услугу разработки дизайн-проекта выставочного стенда. 3D-макет будет создан на основе нашего многолетнего опыта в строительстве выставочных объектов.',
 
           isOpen: false
         },
         {
           id: 5,
-          question: 'Какие выставочные стенды строит компания EXIM?',
+          question: 'Какие выставочные стенды строит компания Арт-Картель?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            'Мы разрабатываем и строим стенды по индивидуальным проектам. Работаем на выставках регионального, федерального и международного уровня, имея опыт застройки на большинстве выставочных площадок России.',
 
           isOpen: false
         },
         {
           id: 6,
-          question:
-            'Каких форматов бывают выставочные стенды?Каких форматов бывают выставочные стенды?',
+          question: 'Каких форматов бывают выставочные стенды?',
           answer:
-            'Свяжитесь с нами, мы обязательно поможем. Найдем для вас креативное решение, спроектируем технологичный, современный стенд, поможем с проведением выставки, оформим любое мероприятие, разработаем уникальный контент, предоставим необходимое оборудование и обеспечим сопровождение.',
+            'Конфигурация стенда зависит от площади, расположения рядом с другими объектами, требований к дизайну и зонированию, а также других параметров. Свяжитесь с нами, и мы поможем вам выбрать оптимальный формат.',
 
           isOpen: false
         }
