@@ -8,7 +8,7 @@
       <div class="flex justify-between flex-wrap gap-[18px] mb-[35px]">
         <RouterLink
           to="/universal"
-          class="flex flex-col max-w-[320px] group"
+          class="flex flex-col max-w-[320px] group cursor-pointer"
           v-for="item in 6"
           :key="item"
         >

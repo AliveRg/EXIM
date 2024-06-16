@@ -68,16 +68,26 @@
         практика показывает, что новая модель организационной деятельности представляет собой
         интересный эксперимент проверки соответствующий условий активизации.
       </div>
-      <p class="font-mono text-[15px] text-[#0073FF]">Заказать похожий стенд →</p>
+      <p class="font-mono text-[15px] text-[#898989] hover:text-[#0073FF] cursor-pointer">
+        Заказать похожий стенд →
+      </p>
       <hr class="max-w-[1000px] mt-[38px] mb-[30px]" />
       <p class="font-mulish text-[30px] text-black font-[900] mb-[37px]">Вам будет интересно</p>
       <div class="flex justify-between flex-wrap gap-[21px] mb-[72px]">
-        <div v-for="item in 3" :key="item" class="flex flex-col">
-          <div class="border border-[#E2E2E2] pt-[14px] pb-[11px] px-[21px]">
+        <div v-for="item in 3" :key="item" class="flex flex-col cursor-pointer group">
+          <div
+            class="border border-[#E2E2E2] group-hover:border-[#979797] border-b-0 transition-all pt-[14px] pb-[11px] px-[21px]"
+          >
             <p class="font-mulish text-[20px] font-[800]">YKK GROUP</p>
             <p class="font-mono text-[15px] font-[400]">Промышленность</p>
           </div>
-          <img src="@/assets/img/prewCont.jpeg" class="w-[319px]" alt="" />
+          <div class="relative overflow-hidden w-[319px] h-[auto]">
+            <img
+              src="@/assets/img/prewCont.jpeg"
+              class="w-full h-full transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -141,7 +141,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
               class="px-[44px] w-full grid grid-cols-4 grid-rows-2 gap-y-[10px] gap-x-[20px] text-[#D0D0D0] font-mulish font-[800] text-[20px]"
             >
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="30"
@@ -179,7 +179,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">3D Дизайн</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="43"
@@ -236,7 +236,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Планировка</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="47"
@@ -298,7 +298,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Проектирование</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="48"
@@ -377,7 +377,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Производство</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="52"
@@ -420,7 +420,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Перевозка</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="41"
@@ -488,7 +488,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Монтаж</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="46"
@@ -550,7 +550,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
                 <p class="transition-colors group-hover:text-[#0073FF]">Оформление</p>
               </div>
               <div
-                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px]"
+                class="flex flex-col items-center justify-between gap-[20px] group transition-all p-[40px] cursor-pointer"
               >
                 <svg
                   width="42"
@@ -1253,7 +1253,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
         </div>
       </div>
       <div class="flex justify-between flex-wrap gap-[21px]">
-        <div v-for="item in 3" :key="item" class="flex flex-col group">
+        <div v-for="item in 3" :key="item" class="flex flex-col group cursor-pointer">
           <div class="">
             <div
               class="border border-[#E2E2E2] group-hover:border-[#979797] border-b-[0px] transition-all pt-[14px] pb-[11px] px-[21px]"
