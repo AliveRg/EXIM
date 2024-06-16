@@ -20,9 +20,13 @@
           <img class="h-[37px] justify-self-center" src="@/assets/img/Logo.png" alt="" />
         </RouterLink>
         <ul class="flex items-center justify-end gap-[32px] max-w-[562px] w-full">
-          <li class="hover:text-[#C50000]">kolesnikov.alfa@gmail.con</li>
+          <li class="hover:text-[#C50000]">
+            <a href="mailto:direct@eximstand.ru"> direct@eximstand.ru</a>
+          </li>
           <li class="transition-colors group-hover:text-[#0073FF]">/</li>
-          <li class="hover:text-[#C50000] min-w-fit">7 951 353 13 63</li>
+          <li class="hover:text-[#C50000] min-w-fit">
+            <a href="tel:+74993255977"> +7 (499) 325-59-77</a>
+          </li>
         </ul>
       </div>
     </div>
