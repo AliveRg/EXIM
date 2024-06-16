@@ -630,7 +630,7 @@ import ButtonForm from '@/components/ButtonComponent.vue'
           ref="swiper"
           :slides-per-view="1"
           :space-between="150"
-          :autoplay="{ delay: 20500, disableOnInteraction: false }"
+          :autoplay="{ delay: 2500, disableOnInteraction: false }"
           :modules="modules"
           class="swiper swiper2 m-0 w-full flex items-center justify-center"
         >
@@ -1349,8 +1349,8 @@ import ButtonForm from '@/components/ButtonComponent.vue'
           class="flex items-center gap-[20px] font-mulish font-[900] text-black text-[20px] w-full"
         >
           <span class="text-[30px] font-[800]">
-            <span class="text-[#0073FF] text-[25px]">7 /</span>
-            Готовитесь к выставке?</span
+            <span class="text-[#0073FF] text-[25px]">8 /</span>
+            Ответы на вопросы?</span
           >
         </p>
         <div class="w-full mt-[49px] min-h-[850px]">
