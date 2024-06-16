@@ -39,12 +39,20 @@
         </div>
       </div>
       <div class="flex justify-between flex-wrap gap-[21px] mb-[35px]">
-        <RouterLink to="/universal" class="flex flex-col" v-for="item in 6" :key="item">
-          <div class="border border-[#E2E2E2] pt-[14px] pb-[11px] px-[21px]">
+        <RouterLink to="/universal" class="flex flex-col group" v-for="item in 6" :key="item">
+          <div
+            class="border border-[#E2E2E2] group-hover:border-[#979797] border-b-0 transition-all pt-[14px] pb-[11px] px-[21px]"
+          >
             <p class="font-mulish text-[20px] font-[800]">YKK GROUP</p>
             <p class="font-mono text-[15px] font-[400]">Промышленность</p>
           </div>
-          <img src="@/assets/img/prewCont.jpeg" class="w-[319px]" alt="" />
+          <div class="relative overflow-hidden w-[319px] h-[auto]">
+            <img
+              src="@/assets/img/prewCont.jpeg"
+              class="w-full h-full transform transition-transform duration-500 ease-in-out group-hover:scale-110"
+              alt=""
+            />
+          </div>
         </RouterLink>
       </div>
       <div class="flex items-center justify-between">
