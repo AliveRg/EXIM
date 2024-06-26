@@ -36,7 +36,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/plugins/axios' // Импортируйте настроенный экземпляр Axios
+
+// import axios from 'axios'
 
 export default {
   data() {

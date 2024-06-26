@@ -37,16 +37,19 @@ export default {
     }
   },
   methods: {
-    toggleMode() {
-      this.isLogin = !this.isLogin
-      this.errorMessage = ''
-    },
     async handleSubmit() {
       try {
         const url = this.isLogin ? 'http://localhost:8081/login' : 'http://localhost:8081/register'
         const response = await axios.post(url, this.form)
-        console.log('Success:', response.data)
-        // Handle successful authentication/registration (e.g., store token, redirect)
+
+        // Сохраняем токен в localStorage
+
+        localStorage.setItem('token', response.data.token)
+
+        // Переходим на страницу панели (/panel)
+        setTimeout(() => {
+          this.$router.push('/panel')
+        }, 100)
       } catch (error) {
         console.error('Error:', error.response.data)
         this.errorMessage = error.response.data.error

@@ -40,7 +40,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/plugins/axios' // Импортируйте настроенный экземпляр Axios
+
+// import axios from 'axios'
 
 export default {
   data() {
@@ -92,18 +94,33 @@ export default {
       try {
         const newImageArray = this.form.new_image.split(',').map((item) => item.trim())
         const payload = { ...this.form, new_image: newImageArray }
-        const response = await axios.put(`http://localhost:8081/news/${this.editingId}`, payload)
+        await axios.put(`http://localhost:8081/news/${this.editingId}`, payload)
+        const updatedNews = await this.fetchSingleNews(this.editingId)
         const index = this.newsList.findIndex((news) => news.id === this.editingId)
-        this.$set(this.newsList, index, response.data)
+        this.$set(this.newsList, index, updatedNews)
         this.resetForm()
       } catch (error) {
         console.error('Error updating news:', error)
       }
     },
+    async fetchSingleNews(id) {
+      try {
+        const response = await axios.get(`http://localhost:8081/news/${id}`)
+        return response.data
+      } catch (error) {
+        console.error('Error fetching single news:', error)
+        return null
+      }
+    },
     editNews(news) {
       this.editMode = true
       this.editingId = news.id
-      this.form = { ...news, new_image: news.new_image.join(', ') }
+      // Convert date to proper format (YYYY-MM-DD) for the input
+      this.form = {
+        ...news,
+        new_date: this.formatDate(news.new_date),
+        new_image: news.new_image.join(', ')
+      }
     },
     async deleteNews(id) {
       try {
@@ -124,6 +141,10 @@ export default {
       }
       this.editMode = false
       this.editingId = null
+    },
+    formatDate(date) {
+      if (!date) return ''
+      return new Date(date).toISOString().slice(0, 10)
     }
   }
 }

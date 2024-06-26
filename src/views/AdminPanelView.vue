@@ -14,19 +14,19 @@
         </div>
       </div>
 
-      <div v-if="activeTab === 'news'">
+      <div v-if="activeTab == 'news'">
         <h2 class="m-[20px] rounded-xl bg-blue-600 px-[14px] py-[8px] text-center text-[#ffffff]">
           News
         </h2>
         <NewsTab />
       </div>
-      <div v-if="activeTab === 'stands'">
+      <div v-if="activeTab == 'stands'">
         <h2 class="m-[20px] rounded-xl bg-blue-600 px-[14px] py-[8px] text-center text-[#ffffff]">
           Stands
         </h2>
         <StandsTab />
       </div>
-      <div v-if="activeTab === 'comments'">
+      <div v-if="activeTab == 'comments'">
         <h2 class="m-[20px] rounded-xl bg-blue-600 px-[14px] py-[8px] text-center text-[#ffffff]">
           Comments
         </h2>
@@ -50,6 +50,12 @@ export default {
   data() {
     return {
       activeTab: 'news'
+    }
+  },
+  mounted() {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      this.$router.push('/login')
     }
   }
 }

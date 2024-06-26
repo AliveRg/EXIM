@@ -73,4 +73,17 @@ const router = createRouter({
   ]
 })
 
+// Проверяем авторизацию перед переходом на защищенные страницы
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      next('/login') // Переходим на страницу входа, если токен отсутствует
+    } else {
+      next() // Продолжаем переход на защищенную страницу
+    }
+  } else {
+    next() // Продолжаем для всех остальных страниц
+  }
+})
 export default router
