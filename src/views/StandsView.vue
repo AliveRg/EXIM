@@ -24,11 +24,6 @@
           >
             конфигурация
           </p>
-          <p
-            class="text-[#4D4D4D] font-mono text-[15px] bg-[#F4F4F4] pt-[2px] pb-[5px] pl-[26px] pr-[25px] rounded-[5px]"
-          >
-            площадь
-          </p>
         </div>
         <div class="">
           <p

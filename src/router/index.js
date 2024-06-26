@@ -7,6 +7,8 @@ import ServiceView from '../views/ServiceView.vue'
 import ContactsView from '../views/ContactsView.vue'
 import BreefView from '../views/BreefView.vue'
 import NewsView from '../views/NewsView.vue'
+import AdminView from '../views/AdminView.vue'
+import AdminPanelView from '../views/AdminPanelView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +49,16 @@ const router = createRouter({
       path: '/news',
       name: 'news',
       component: NewsView
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: AdminView
+    },
+    {
+      path: '/panel',
+      name: 'panel',
+      component: AdminPanelView
     },
     {
       path: '/universal',

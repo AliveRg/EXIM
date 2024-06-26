@@ -1572,7 +1572,6 @@ export default {
       // } else {
       //   this.activePaginationIndex++
       // }
-      console.log(this.activePaginationIndex1)
     }
   },
   components: {

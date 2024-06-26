@@ -1,3 +1,6 @@
+<script setup>
+import axios from 'axios'
+</script>
 <template>
   <div class="mt-[244px] mb-[48px]">
     <div class="max-w-[1000px] mx-auto">
@@ -9,27 +12,27 @@
         <RouterLink
           to="/universal"
           class="flex flex-col max-w-[320px] group cursor-pointer"
-          v-for="item in 6"
+          v-for="item in news"
           :key="item"
         >
           <div
             class="border border-[#E2E2E2] group-hover:border-[#979797] transition-all pt-[14px] pb-[25px]"
           >
             <div class="pb-[11px] px-[21px]">
-              <p class="font-mulish text-[20px] font-[800]">Выставка “Интерткань”</p>
+              <p class="font-mulish text-[20px] font-[800]">{{ item.attributes.title }}”</p>
               <p class="font-mono text-[15px] font-[400]">Промышленность</p>
             </div>
 
             <div class="relative overflow-hidden w-[319px] h-[auto]">
               <img
-                src="@/assets/img/prewCont.jpeg"
+                :src="`http://localhost:1337${item.attributes.new_image.data[0].attributes.url}`"
                 class="w-full h-full transform transition-transform duration-500 ease-in-out group-hover:scale-110"
                 alt=""
               />
             </div>
             <div class="font-mono text-[15px]">
-              <p class="px-[20px] mt-[30px]">
-                В ЦВК Экспоцентр прошла выставка “Интерткань”. Там можно было познакомиться ...
+              <p class="px-[20px] mt-[30px] h-[67px] truncate-multiline">
+                {{ item.attributes.content }}
               </p>
               <p
                 class="px-[20px] mt-[17px] text-[#898989] group-hover:text-[#0073FF] transition-all"
@@ -83,5 +86,26 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      news: []
+    }
+  },
+  mounted() {
+    axios
+      .get('http://localhost:1337/api/news?populate=*')
+      .then((response) => {
+        this.news = response.data.data
+        console.log(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+}
+</script>
 
 <style></style>
