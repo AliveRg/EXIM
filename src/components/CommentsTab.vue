@@ -61,7 +61,7 @@ export default {
   methods: {
     async fetchComments() {
       try {
-        const response = await axios.get('https://serverexpress.onrender.com/comments')
+        const response = await axios.get('http://localhost:8081/comments')
         this.commentList = response.data
       } catch (error) {
         console.error('Error fetching comments:', error)
@@ -80,7 +80,7 @@ export default {
           ? this.form.image.split(',').map((item) => item.trim())
           : []
         const payload = { ...this.form, image: imageArray }
-        const response = await axios.post('https://serverexpress.onrender.com/comments', payload)
+        const response = await axios.post('http://localhost:8081/comments', payload)
         this.commentList.push(response.data)
         this.resetForm()
       } catch (error) {
@@ -94,7 +94,7 @@ export default {
           : []
         const payload = { ...this.form, image: imageArray }
         const response = await axios.put(
-          `https://serverexpress.onrender.com/comments/${this.editingId}`,
+          `http://localhost:8081/comments/${this.editingId}`,
           payload
         )
         const index = this.commentList.findIndex((comment) => comment.id === this.editingId)
@@ -111,7 +111,7 @@ export default {
     },
     async deleteComment(id) {
       try {
-        await axios.delete(`https://serverexpress.onrender.com/comments/${id}`)
+        await axios.delete(`http://localhost:8081/comments/${id}`)
         this.commentList = this.commentList.filter((comment) => comment.id !== id)
       } catch (error) {
         console.error('Error deleting comment:', error)
