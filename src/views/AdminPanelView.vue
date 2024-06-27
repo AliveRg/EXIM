@@ -1,7 +1,7 @@
 <template>
   <div class="mt-[300px] mx-[100px]">
     <div class="admin-panel">
-      <!-- <h1>Admin Panel</h1> -->
+      <h1>Admin Panel</h1>
       <div class="flex items-center justify-start gap-[30px] text-[#ffffff]">
         <div
           @click="activeTab = 'news'"

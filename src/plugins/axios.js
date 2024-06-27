@@ -1,19 +1,32 @@
 import axios from 'axios'
+import router from '@/router/index'
 
 const instance = axios.create({
-  baseURL: 'https://serverexpress.onrender.com' // Укажите ваш базовый URL
+  baseURL: 'http://localhost:8081'
 })
 
-// Добавляем интерсептор для добавления токена в заголовки всех запросов
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token') // Получаем токен из localStorage
+    const token = localStorage.getItem('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
   (error) => {
+    return Promise.reject(error)
+  }
+)
+
+instance.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token')
+      router.push('/admin')
+    }
     return Promise.reject(error)
   }
 )
