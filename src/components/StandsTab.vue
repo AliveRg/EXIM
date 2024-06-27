@@ -80,7 +80,7 @@ export default {
   methods: {
     async fetchStands() {
       try {
-        const response = await axios.get('http://localhost:8081/stands')
+        const response = await axios.get('https://serverexpress.onrender.com/stands')
         this.standList = response.data
       } catch (error) {
         console.error('Error fetching stands:', error)
@@ -102,7 +102,7 @@ export default {
           ? this.form.image.split(',').map((item) => item.trim())
           : []
         const payload = { ...this.form, preview: previewArray, image: imageArray }
-        const response = await axios.post('http://localhost:8081/stands', payload)
+        const response = await axios.post('https://serverexpress.onrender.com/stands', payload)
         this.standList.push(response.data)
         this.resetForm()
       } catch (error) {
@@ -118,7 +118,10 @@ export default {
           ? this.form.image.split(',').map((item) => item.trim())
           : []
         const payload = { ...this.form, preview: previewArray, image: imageArray }
-        const response = await axios.put(`http://localhost:8081/stands/${this.editingId}`, payload)
+        const response = await axios.put(
+          `https://serverexpress.onrender.com/stands/${this.editingId}`,
+          payload
+        )
         const index = this.standList.findIndex((stand) => stand.id === this.editingId)
         this.$set(this.standList, index, response.data)
         this.resetForm()
@@ -133,7 +136,7 @@ export default {
     },
     async deleteStand(id) {
       try {
-        await axios.delete(`http://localhost:8081/stands/${id}`)
+        await axios.delete(`https://serverexpress.onrender.com/stands/${id}`)
         this.standList = this.standList.filter((stand) => stand.id !== id)
       } catch (error) {
         console.error('Error deleting stand:', error)

@@ -66,7 +66,7 @@ export default {
   methods: {
     async fetchNews() {
       try {
-        const response = await axios.get('http://localhost:8081/news')
+        const response = await axios.get('https://serverexpress.onrender.com/news')
         this.newsList = response.data
       } catch (error) {
         console.error('Error fetching news:', error)
@@ -83,7 +83,7 @@ export default {
       try {
         const newImageArray = this.form.new_image.split(',').map((item) => item.trim())
         const payload = { ...this.form, new_image: newImageArray }
-        const response = await axios.post('http://localhost:8081/news', payload)
+        const response = await axios.post('https://serverexpress.onrender.com/news', payload)
         this.newsList.push(response.data)
         this.resetForm()
       } catch (error) {
@@ -94,7 +94,7 @@ export default {
       try {
         const newImageArray = this.form.new_image.split(',').map((item) => item.trim())
         const payload = { ...this.form, new_image: newImageArray }
-        await axios.put(`http://localhost:8081/news/${this.editingId}`, payload)
+        await axios.put(`https://serverexpress.onrender.com/news/${this.editingId}`, payload)
         const updatedNews = await this.fetchSingleNews(this.editingId)
         const index = this.newsList.findIndex((news) => news.id === this.editingId)
         this.$set(this.newsList, index, updatedNews)
@@ -105,7 +105,7 @@ export default {
     },
     async fetchSingleNews(id) {
       try {
-        const response = await axios.get(`http://localhost:8081/news/${id}`)
+        const response = await axios.get(`https://serverexpress.onrender.com/news/${id}`)
         return response.data
       } catch (error) {
         console.error('Error fetching single news:', error)
@@ -124,7 +124,7 @@ export default {
     },
     async deleteNews(id) {
       try {
-        await axios.delete(`http://localhost:8081/news/${id}`)
+        await axios.delete(`https://serverexpress.onrender.com/news/${id}`)
         this.newsList = this.newsList.filter((news) => news.id !== id)
       } catch (error) {
         console.error('Error deleting news:', error)

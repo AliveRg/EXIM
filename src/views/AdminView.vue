@@ -37,9 +37,14 @@ export default {
     }
   },
   methods: {
+    toggleMode() {
+      this.isLogin = !this.isLogin
+    },
     async handleSubmit() {
       try {
-        const url = this.isLogin ? 'http://localhost:8081/login' : 'http://localhost:8081/register'
+        const url = this.isLogin
+          ? 'https://serverexpress.onrender.com/login'
+          : 'https://serverexpress.onrender.com/register'
         const response = await axios.post(url, this.form)
 
         // Сохраняем токен в localStorage

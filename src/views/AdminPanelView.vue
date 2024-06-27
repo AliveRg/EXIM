@@ -3,14 +3,23 @@
     <div class="admin-panel">
       <h1>Admin Panel</h1>
       <div class="flex items-center justify-start gap-[30px] text-[#ffffff]">
-        <div class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl">
-          <button @click="activeTab = 'news'">News</button>
+        <div
+          @click="activeTab = 'news'"
+          class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
+        >
+          <button>News</button>
         </div>
-        <div class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl">
-          <button @click="activeTab = 'stands'">Stands</button>
+        <div
+          @click="activeTab = 'stands'"
+          class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
+        >
+          <button>Stands</button>
         </div>
-        <div class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl">
-          <button @click="activeTab = 'comments'">Comments</button>
+        <div
+          @click="activeTab = 'comments'"
+          class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
+        >
+          <button>Comments</button>
         </div>
       </div>
 
