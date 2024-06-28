@@ -27,7 +27,7 @@
       </div>
       <div>
         <label for="images">Images:</label>
-        <input type="file" ref="imageInput" @change="handleImageUpload" multiple />
+        <input type="file" ref="imageInput" name="image" @change="handleImageUpload" multiple />
       </div>
       <div>
         <label for="theme">Theme:</label>
@@ -102,7 +102,7 @@ export default {
         configuration: '',
         square: '',
         preview: null,
-        // images: [],
+        images: [],
         theme: '',
         year: ''
       },
@@ -143,45 +143,47 @@ export default {
     },
     async createStand() {
       try {
-        // const formData = new FormData()
-        // for (let key in this.form) {
-        //   if (key === 'images') {
-        //     this.form.images.forEach((image) => {
-        //       formData.append('images', image)
-        //     })
-        //   } else {
-        //     formData.append(key, this.form[key])
-        //   }
-        // }
+        const formData = new FormData()
+        formData.append('title', this.form.title)
+        formData.append('description', this.form.description)
+        formData.append('configuration', this.form.configuration)
+        formData.append('square', this.form.square)
+        formData.append('theme', this.form.theme)
+        formData.append('year', this.form.year)
+        if (this.form.preview) {
+          formData.append('preview', this.form.preview)
+        }
+        this.form.images.forEach((image) => {
+          formData.append('image', image)
+        })
 
-        const response = await axios.post('http://localhost:8081/stands', this.form, {
+        const response = await axios.post('http://localhost:8081/stands', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
-        console.log(this.form)
         this.standList.push(response.data)
         this.resetForm()
       } catch (error) {
         console.error('Error creating stand:', error)
       }
     },
-
     async updateStand() {
       try {
         const formData = new FormData()
-        for (let key in this.form) {
-          if (key === 'preview') {
-            formData.append('preview', this.form.preview)
-          } else if (key === 'images' && Array.isArray(this.form.images)) {
-            this.form.images.forEach((image) => {
-              formData.append('images', image)
-            })
-          } else {
-            formData.append(key, this.form[key])
-          }
+        formData.append('title', this.form.title)
+        formData.append('description', this.form.description)
+        formData.append('configuration', this.form.configuration)
+        formData.append('square', this.form.square)
+        formData.append('theme', this.form.theme)
+        formData.append('year', this.form.year)
+        if (this.form.preview) {
+          formData.append('preview', this.form.preview)
         }
-        console.log(formData)
+        this.form.images.forEach((image) => {
+          formData.append('image', image)
+        })
+
         await axios.put(`http://localhost:8081/stands/${this.editingId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -216,7 +218,6 @@ export default {
         configuration: stand.configuration,
         square: stand.square,
         preview: stand.preview,
-        //  ? this.formatDate(stand.preview) : null,
         theme: stand.theme,
         year: stand.year ? this.formatDate(stand.year) : '',
         images: [] // Очищаем изображения при редактировании
@@ -231,7 +232,6 @@ export default {
 
       return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-')
     },
-
     async deleteStand(id) {
       try {
         await axios.delete(`http://localhost:8081/stands/${id}`)
