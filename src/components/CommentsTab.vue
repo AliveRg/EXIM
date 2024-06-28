@@ -1,6 +1,6 @@
 <template>
   <div class="comments-tab">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
       <div>
         <label for="name">Name:</label>
         <input type="text" v-model="form.name" required />
@@ -14,31 +14,64 @@
         <input type="text" v-model="form.company" required />
       </div>
       <div>
-        <label for="preview">Preview Image URL:</label>
-        <input type="text" v-model="form.preview" />
+        <label for="preview">Preview Image:</label>
+        <input type="file" ref="previewInput" name="preview" @change="handlePreviewUpload" />
       </div>
-      <div>
+      <!-- <div>
         <label for="image">Image URLs (comma separated):</label>
         <input type="text" v-model="form.image" />
-      </div>
+      </div> -->
       <button type="submit">{{ editMode ? 'Update Comment' : 'Add Comment' }}</button>
     </form>
 
-    <ul>
-      <li v-for="comment in commentList" :key="comment.id">
-        <h3>{{ comment.name }}</h3>
-        <p>{{ comment.content }}</p>
-        <button @click="editComment(comment)">Edit</button>
-        <button @click="deleteComment(comment.id)">Delete</button>
-      </li>
-    </ul>
+    <div v-if="!selectedComment">
+      <ul class="comment-list flex flex-wrap items-center justify-start gap-[50px]">
+        <li
+          v-for="comment in sortedCommList"
+          :key="comment.id"
+          class="comment-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
+        >
+          <h3>{{ comment.name }}</h3>
+          <p>{{ comment.content }}</p>
+          <img
+            class="comment-image w-[300px] h-[300px] object-contain"
+            v-if="comment.preview"
+            :src="`http://localhost:8081/uploads/${comment.preview}`"
+            alt="Preview Image"
+          />
+          <button @click="editComment(comment)">Edit</button>
+          <button @click="showCommentDetails(comment)">Details</button>
+          <button @click="deleteComment(comment.id)">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <div v-if="selectedComment">
+      <h2>{{ selectedComment.name }}</h2>
+      <p>{{ selectedComment.content }}</p>
+      <p>{{ selectedComment.company }}</p>
+      <img
+        v-if="selectedComment.preview"
+        class="w-[700px]"
+        :src="`http://localhost:8081/uploads/${selectedComment.preview}`"
+        alt="Preview Image"
+      />
+      <div v-if="selectedComment.images && selectedComment.images.length">
+        <h3>Images:</h3>
+        <img
+          v-for="image in selectedComment.images"
+          :key="image"
+          :src="`http://localhost:8081/uploads/${image}`"
+          alt="Image"
+        />
+      </div>
+      <button @click="goBackToList()">Back to List</button>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from '@/plugins/axios' // Импортируйте настроенный экземпляр Axios
-
-// import axios from 'axios'
 
 export default {
   data() {
@@ -48,11 +81,17 @@ export default {
         name: '',
         content: '',
         company: '',
-        preview: '',
+        preview: null,
         image: ''
       },
       editMode: false,
-      editingId: null
+      editingId: null,
+      selectedComment: null
+    }
+  },
+  computed: {
+    sortedCommList() {
+      return this.commentList.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     }
   },
   created() {
@@ -67,6 +106,9 @@ export default {
         console.error('Error fetching comments:', error)
       }
     },
+    handlePreviewUpload(event) {
+      this.form.preview = event.target.files[0]
+    },
     async handleSubmit() {
       if (this.editMode) {
         this.updateComment()
@@ -76,11 +118,27 @@ export default {
     },
     async createComment() {
       try {
-        const imageArray = this.form.image
-          ? this.form.image.split(',').map((item) => item.trim())
-          : []
-        const payload = { ...this.form, image: imageArray }
-        const response = await axios.post('http://localhost:8081/comments', payload)
+        const formData = new FormData()
+        for (let key in this.form) {
+          if (key === 'preview' && this.form.preview instanceof File) {
+            formData.append('preview', this.form.preview)
+          } else if (key === 'image') {
+            const imageArray = this.form.image
+              ? this.form.image.split(',').map((item) => item.trim())
+              : []
+            imageArray.forEach((image) => {
+              formData.append('images', image)
+            })
+          } else {
+            formData.append(key, this.form[key])
+          }
+        }
+
+        const response = await axios.post('http://localhost:8081/comments', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
         this.commentList.push(response.data)
         this.resetForm()
       } catch (error) {
@@ -89,16 +147,36 @@ export default {
     },
     async updateComment() {
       try {
-        const imageArray = this.form.image
-          ? this.form.image.split(',').map((item) => item.trim())
-          : []
-        const payload = { ...this.form, image: imageArray }
+        const formData = new FormData()
+        for (let key in this.form) {
+          if (key === 'preview' && this.form.preview instanceof File) {
+            formData.append('preview', this.form.preview)
+          } else if (key === 'image') {
+            const imageArray = this.form.image
+              ? this.form.image.split(',').map((item) => item.trim())
+              : []
+            imageArray.forEach((image) => {
+              formData.append('images', image)
+            })
+          } else {
+            formData.append(key, this.form[key])
+          }
+        }
+        console.log(this.editingId)
         const response = await axios.put(
           `http://localhost:8081/comments/${this.editingId}`,
-          payload
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
         )
+
         const index = this.commentList.findIndex((comment) => comment.id === this.editingId)
-        this.$set(this.commentList, index, response.data)
+        if (index !== -1) {
+          this.$set(this.commentList, index, response.data)
+        }
         this.resetForm()
       } catch (error) {
         console.error('Error updating comment:', error)
@@ -107,7 +185,11 @@ export default {
     editComment(comment) {
       this.editMode = true
       this.editingId = comment.id
-      this.form = { ...comment, image: comment.image.join(', ') }
+      this.form = {
+        ...comment,
+        image: comment.images ? comment.images.join(', ') : '',
+        preview: comment.preview || null
+      }
     },
     async deleteComment(id) {
       try {
@@ -122,11 +204,22 @@ export default {
         name: '',
         content: '',
         company: '',
-        preview: '',
+        preview: null,
         image: ''
       }
       this.editMode = false
       this.editingId = null
+    },
+    async showCommentDetails(comment) {
+      try {
+        const response = await axios.get(`http://localhost:8081/comments/${comment.id}`)
+        this.selectedComment = response.data
+      } catch (error) {
+        console.error('Error fetching comment details:', error)
+      }
+    },
+    goBackToList() {
+      this.selectedComment = null
     }
   }
 }

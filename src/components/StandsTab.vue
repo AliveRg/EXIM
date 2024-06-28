@@ -1,6 +1,6 @@
 <template>
   <div class="stands-tab">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
       <div>
         <label for="title">Title:</label>
         <input type="text" v-model="form.title" required />
@@ -22,12 +22,12 @@
         <input type="number" v-model="form.square" required />
       </div>
       <div>
-        <label for="preview">Preview Image URL:</label>
-        <input type="text" v-model="form.preview" />
+        <label for="preview">Preview Image:</label>
+        <input type="file" ref="previewInput" name="preview" @change="handlePreviewUpload" />
       </div>
       <div>
-        <label for="image">Image URLs (comma separated):</label>
-        <input type="text" v-model="form.image" />
+        <label for="images">Images:</label>
+        <input type="file" ref="imageInput" @change="handleImageUpload" multiple />
       </div>
       <div>
         <label for="theme">Theme:</label>
@@ -40,21 +40,57 @@
       <button type="submit">{{ editMode ? 'Update Stand' : 'Add Stand' }}</button>
     </form>
 
-    <ul>
-      <li v-for="stand in standList" :key="stand.id">
-        <h3>{{ stand.title }}</h3>
-        <p>{{ stand.description }}</p>
-        <button @click="editStand(stand)">Edit</button>
-        <button @click="deleteStand(stand.id)">Delete</button>
-      </li>
-    </ul>
+    <div v-if="!selectedStand">
+      <ul class="news-list flex flex-wrap items-center justify-start gap-[50px]">
+        <li
+          v-for="stand in sortedStandList"
+          :key="stand.id"
+          class="news-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
+        >
+          <h3>{{ stand.title }}</h3>
+          <p>{{ stand.description }}</p>
+          <img
+            class="news-image w-[300px] h-[300px] object-contain"
+            v-if="stand.preview"
+            :src="`http://localhost:8081/uploads/${stand.preview}`"
+            alt="Preview Image"
+          />
+          <button @click="editStand(stand)">Edit</button>
+          <button @click="showStandDetails(stand)">Details</button>
+          <button @click="deleteStand(stand.id)">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <div v-if="selectedStand">
+      <h2>{{ selectedStand.title }}</h2>
+      <p>{{ selectedStand.description }}</p>
+      <p>{{ selectedStand.configuration }}</p>
+      <p>{{ selectedStand.square }}</p>
+      <p>{{ selectedStand.theme }}</p>
+      <p>{{ selectedStand.year }}</p>
+      <img
+        v-if="selectedStand.preview"
+        class="w-[700px]"
+        :src="`http://localhost:8081/uploads/${selectedStand.preview}`"
+        alt="Preview Image"
+      />
+      <div v-if="selectedStand.images && selectedStand.images.length">
+        <h3>Images:</h3>
+        <img
+          v-for="image in selectedStand.images"
+          :key="image"
+          :src="`http://localhost:8081/uploads/${image}`"
+          alt="Image"
+        />
+      </div>
+      <button @click="goBackToList()">Back to List</button>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from '@/plugins/axios' // Импортируйте настроенный экземпляр Axios
-
-// import axios from 'axios'
+import axios from '@/plugins/axios'
 
 export default {
   data() {
@@ -65,13 +101,19 @@ export default {
         description: '',
         configuration: '',
         square: '',
-        preview: '',
-        image: '',
+        preview: null,
+        // images: [],
         theme: '',
         year: ''
       },
       editMode: false,
-      editingId: null
+      editingId: null,
+      selectedStand: null
+    }
+  },
+  computed: {
+    sortedStandList() {
+      return this.standList.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     }
   },
   created() {
@@ -86,6 +128,12 @@ export default {
         console.error('Error fetching stands:', error)
       }
     },
+    handlePreviewUpload(event) {
+      this.form.preview = event.target.files[0]
+    },
+    handleImageUpload(event) {
+      this.form.images = Array.from(event.target.files)
+    },
     async handleSubmit() {
       if (this.editMode) {
         this.updateStand()
@@ -95,42 +143,95 @@ export default {
     },
     async createStand() {
       try {
-        const previewArray = this.form.preview
-          ? this.form.preview.split(',').map((item) => item.trim())
-          : []
-        const imageArray = this.form.image
-          ? this.form.image.split(',').map((item) => item.trim())
-          : []
-        const payload = { ...this.form, preview: previewArray, image: imageArray }
-        const response = await axios.post('http://localhost:8081/stands', payload)
+        // const formData = new FormData()
+        // for (let key in this.form) {
+        //   if (key === 'images') {
+        //     this.form.images.forEach((image) => {
+        //       formData.append('images', image)
+        //     })
+        //   } else {
+        //     formData.append(key, this.form[key])
+        //   }
+        // }
+
+        const response = await axios.post('http://localhost:8081/stands', this.form, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log(this.form)
         this.standList.push(response.data)
         this.resetForm()
       } catch (error) {
         console.error('Error creating stand:', error)
       }
     },
+
     async updateStand() {
       try {
-        const previewArray = this.form.preview
-          ? this.form.preview.split(',').map((item) => item.trim())
-          : []
-        const imageArray = this.form.image
-          ? this.form.image.split(',').map((item) => item.trim())
-          : []
-        const payload = { ...this.form, preview: previewArray, image: imageArray }
-        const response = await axios.put(`http://localhost:8081/stands/${this.editingId}`, payload)
+        const formData = new FormData()
+        for (let key in this.form) {
+          if (key === 'preview') {
+            formData.append('preview', this.form.preview)
+          } else if (key === 'images' && Array.isArray(this.form.images)) {
+            this.form.images.forEach((image) => {
+              formData.append('images', image)
+            })
+          } else {
+            formData.append(key, this.form[key])
+          }
+        }
+        console.log(formData)
+        await axios.put(`http://localhost:8081/stands/${this.editingId}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+
+        const updatedStand = await this.fetchSingleStand(this.editingId)
         const index = this.standList.findIndex((stand) => stand.id === this.editingId)
-        this.$set(this.standList, index, response.data)
+        if (index !== -1) {
+          this.$set(this.standList, index, updatedStand) // Использование $set для обновления массива
+        }
         this.resetForm()
       } catch (error) {
         console.error('Error updating stand:', error)
       }
     },
+    async fetchSingleStand(id) {
+      try {
+        const response = await axios.get(`http://localhost:8081/stands/${id}`)
+        return response.data
+      } catch (error) {
+        console.error('Error fetching single stand:', error)
+        return null
+      }
+    },
     editStand(stand) {
       this.editMode = true
       this.editingId = stand.id
-      this.form = { ...stand, preview: stand.preview.join(', '), image: stand.image.join(', ') }
+      this.form = {
+        title: stand.title,
+        description: stand.description,
+        configuration: stand.configuration,
+        square: stand.square,
+        preview: stand.preview,
+        //  ? this.formatDate(stand.preview) : null,
+        theme: stand.theme,
+        year: stand.year ? this.formatDate(stand.year) : '',
+        images: [] // Очищаем изображения при редактировании
+      }
     },
+    formatDate(date) {
+      if (!date) return ''
+      const d = new Date(date)
+      const month = '' + (d.getMonth() + 1)
+      const day = '' + d.getDate()
+      const year = d.getFullYear()
+
+      return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-')
+    },
+
     async deleteStand(id) {
       try {
         await axios.delete(`http://localhost:8081/stands/${id}`)
@@ -145,13 +246,24 @@ export default {
         description: '',
         configuration: '',
         square: '',
-        preview: '',
-        image: '',
+        preview: null,
+        images: [],
         theme: '',
         year: ''
       }
       this.editMode = false
       this.editingId = null
+    },
+    async showStandDetails(stand) {
+      try {
+        const response = await axios.get(`http://localhost:8081/stands/${stand.id}`)
+        this.selectedStand = response.data
+      } catch (error) {
+        console.error('Error fetching stand details:', error)
+      }
+    },
+    goBackToList() {
+      this.selectedStand = null
     }
   }
 }

@@ -4,19 +4,19 @@
       <h1>Admin Panel</h1>
       <div class="flex items-center justify-start gap-[30px] text-[#ffffff]">
         <div
-          @click="activeTab = 'news'"
+          @click="setActiveTab('news')"
           class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
         >
           <button>News</button>
         </div>
         <div
-          @click="activeTab = 'stands'"
+          @click="setActiveTab('stands')"
           class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
         >
           <button>Stands</button>
         </div>
         <div
-          @click="activeTab = 'comments'"
+          @click="setActiveTab('comments')"
           class="px-[25px] py-[13px] bg-blue-600 hover:bg-blue-800 rounded-xl"
         >
           <button>Comments</button>
@@ -58,7 +58,14 @@ export default {
   },
   data() {
     return {
-      activeTab: 'news'
+      activeTab: localStorage.getItem('activeTab') || 'news'
+    }
+  },
+
+  methods: {
+    setActiveTab(tab) {
+      this.activeTab = tab
+      localStorage.setItem('activeTab', tab)
     }
   },
   mounted() {

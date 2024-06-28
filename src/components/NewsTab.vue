@@ -33,7 +33,7 @@
       <div v-if="!selectedNews">
         <ul class="news-list flex flex-wrap items-center justify-start gap-[50px]">
           <li
-            v-for="news in newsList"
+            v-for="news in sortedNewsList"
             :key="news.id"
             class="news-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
           >
@@ -107,6 +107,11 @@ export default {
       selectedNews: null
     }
   },
+  computed: {
+    sortedNewsList() {
+      return this.newsList.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    }
+  },
   created() {
     this.fetchNews()
   },
@@ -136,16 +141,7 @@ export default {
     },
     async createNews() {
       try {
-        // const formData = new FormData()
-        // for (let key in this.form) {
-        //   if (key === 'new_images') {
-        //     this.form.new_images.forEach((image) => {
-        //       formData.append('new_images', image)
-        //     })
-        //   } else {
-        //     formData.append(key, this.form[key])
-        //   }
-        // }
+       
 
         const response = await axios.post('http://localhost:8081/news',  this.form, {
           headers: {
