@@ -18,8 +18,12 @@
         <input type="date" v-model="form.new_date" required />
       </div>
       <div>
+        <label for="new_image">Preview:</label>
+        <input type="file" ref="fileInput" name="new_image" @change="handlePreviewUpload"  />
+      </div>
+      <div>
         <label for="new_image">Images:</label>
-        <input type="file" ref="fileInput" name="new_image" @change="handleFileUpload"  />
+        <input type="file" ref="fileInput" name="images" multiple @change="handleImageUpload"  />
       </div>
       <div>
         <label for="hotNew">Hot News:</label>
@@ -33,10 +37,10 @@
       <div v-if="!selectedNews">
         <ul class="news-list flex flex-wrap items-center justify-start gap-[50px]">
           <li
-            v-for="news in sortedNewsList"
-            :key="news.id"
-            class="news-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
-          >
+        v-for="news in paginatedNews"
+        :key="news.id"
+        class="news-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
+      >
             <div class="news-content">
               <h3>{{ news.title }}</h3>
               <p>{{ news.description }}</p>
@@ -54,6 +58,12 @@
             </div>
           </li>
         </ul>
+        <!-- Элементы управления пагинацией -->
+        <div class="pagination flex justify-between items-center mt-[30px]">
+          <button @click="prevPage" :disabled="currentPage === 1">Prev</button>
+          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+        </div>
       </div>
 
       <!-- Детали новости -->
@@ -81,16 +91,33 @@
           :src="`http://localhost:8081/uploads/${selectedNews.new_image}`"
           alt="News Image"
         />
+        <div>
+        <h3>Images:</h3>
+        <swiper :slides-per-view="1" :space-between="8" navigation pagination class="w-1/2">
+          <swiper-slide v-for="image in selectedNews.images" :key="image">
+            <img
+              :src="`http://localhost:8081/uploads/${image}`"
+              alt="Image"
+              class="w-[200px] h-auto"
+            />
+          </swiper-slide>
+        </swiper>
+      </div>
         <button @click="goBackToList()">Back to List</button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import axios from '@/plugins/axios'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/swiper-bundle.css'
 
 export default {
+  components: {
+    Swiper,
+    SwiperSlide
+  },
   data() {
     return {
       newsList: [],
@@ -100,17 +127,31 @@ export default {
         content: '',
         new_date: '',
         new_image: null,
+        images: [], // добавляем массив для изображений
         hotNew: false
       },
       editMode: false,
       editingId: null,
-      selectedNews: null
+      selectedNews: null,
+      currentPage: 1, // Текущая страница
+      pageSize: 9, // Количество новостей на странице
+      totalItems: 0, // Общее количество новостей
+      totalPages: 0, // Общее количество страниц
+      paginatedNews: [],
     }
   },
   computed: {
     sortedNewsList() {
       return this.newsList.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    }
+    },
+    // paginatedNewsList() {
+    //   const start = (this.currentPage - 1) * this.newsPerPage
+    //   const end = start + this.newsPerPage
+    //   return this.sortedNewsList.slice(start, end)
+    // },
+    // totalPages() {
+    //   return Math.ceil(this.newsList.length / this.newsPerPage)
+    // }
   },
   created() {
     this.fetchNews()
@@ -120,17 +161,34 @@ export default {
       try {
         const response = await axios.get('http://localhost:8081/news')
         this.newsList = response.data
+        this.totalItems = this.newsList.length
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize)
+        this.paginateNews()
       } catch (error) {
         console.error('Error fetching news:', error)
       }
     },
-    // handleFileUpload(event) {
-    //   const files = event.target.files
-    //   this.form.new_images = Array.from(files)
-    // },
-    handleFileUpload(event) {
-      const file = event.target.files[0]
-      this.form.new_image = file
+    async paginateNews() {
+      const startIndex = (this.currentPage - 1) * this.pageSize
+      this.paginatedNews = this.sortedNewsList.slice(startIndex, startIndex + this.pageSize)
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--
+        this.paginateNews()
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++
+        this.paginateNews()
+      }
+    },
+    handlePreviewUpload(event) {
+      this.form.new_image = event.target.files[0]
+    },
+    handleImageUpload(event) {
+      this.form.images = Array.from(event.target.files)
     },
     async handleSubmit() {
       if (this.editMode) {
@@ -141,33 +199,44 @@ export default {
     },
     async createNews() {
       try {
-       
+        const formData = new FormData()
+        formData.append('title', this.form.title)
+        formData.append('description', this.form.description)
+        formData.append('content', this.form.content)
+        formData.append('new_date', this.form.new_date)
+        formData.append('hotNew', this.form.hotNew)
+        if (this.form.new_image) {
+          formData.append('new_image', this.form.new_image)
+        }
+        this.form.images.forEach((image) => {
+          formData.append('images', image)
+        })
 
-        const response = await axios.post('http://localhost:8081/news',  this.form, {
+        const response = await axios.post('http://localhost:8081/news', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
-
         this.newsList.push(response.data)
         this.resetForm()
       } catch (error) {
         console.error('Error creating news:', error)
-        console.error('Response data:', error.response.data)
       }
     },
     async updateNews() {
       try {
         const formData = new FormData()
-        for (let key in this.form) {
-          if (key === 'new_images') {
-            this.form.new_images.forEach((image) => {
-              formData.append('new_images', image)
-            })
-          } else {
-            formData.append(key, this.form[key])
-          }
+        formData.append('title', this.form.title)
+        formData.append('description', this.form.description)
+        formData.append('content', this.form.content)
+        formData.append('new_date', this.form.new_date)
+        formData.append('hotNew', this.form.hotNew)
+        if (this.form.new_image) {
+          formData.append('new_image', this.form.new_image)
         }
+        this.form.images.forEach((image) => {
+          formData.append('images', image)
+        })
 
         await axios.put(`http://localhost:8081/news/${this.editingId}`, formData, {
           headers: {
@@ -196,15 +265,20 @@ export default {
       this.editMode = true
       this.editingId = news.id
       this.form = {
-        ...news,
+        title: news.title,
+        description: news.description,
+        content: news.content,
         new_date: this.formatDate(news.new_date),
-        new_images: [] // Очищаем изображения при редактировании
+        new_image: null, // очищаем изображение при редактировании
+        images: [], // очищаем изображения при редактировании
+        hotNew: news.hotNew
       }
     },
     async deleteNews(id) {
       try {
         await axios.delete(`http://localhost:8081/news/${id}`)
         this.newsList = this.newsList.filter((news) => news.id !== id)
+        this.paginatedNews = this.paginatedNews.filter((news) => news.id !== id)
       } catch (error) {
         console.error('Error deleting news:', error)
       }
@@ -215,14 +289,12 @@ export default {
         description: '',
         content: '',
         new_date: '',
-        new_images: [],
+        new_image: null,
+        images: [],
         hotNew: false
       }
       this.editMode = false
       this.editingId = null
-    },
-    async viewNews(news) {
-      this.selectedNews = await this.fetchSingleNews(news.id)
     },
     async showNewsDetails(news) {
       try {
@@ -237,11 +309,16 @@ export default {
     },
     formatDate(date) {
       if (!date) return ''
-      return new Date(date).toISOString().slice(0, 10)
+      const d = new Date(date)
+      const month = '' + (d.getMonth() + 1)
+      const day = '' + d.getDate()
+      const year = d.getFullYear()
+      return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-')
     }
   }
 }
 </script>
+
 
 <style scoped>
 form {

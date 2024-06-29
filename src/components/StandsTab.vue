@@ -43,16 +43,17 @@
     <div v-if="!selectedStand">
       <ul class="news-list flex flex-wrap items-center justify-start gap-[50px]">
         <li
-          v-for="stand in sortedStandList"
+          v-for="stand in paginatedStands"
           :key="stand.id"
           class="news-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
         >
+          <!-- Display stand information -->
           <h3>{{ stand.title }}</h3>
           <p>{{ stand.description }}</p>
           <img
-            class="news-image w-[300px] h-[300px] object-contain"
             v-if="stand.preview"
             :src="`http://localhost:8081/uploads/${stand.preview}`"
+            class="news-image w-[300px] h-[300px] object-contain"
             alt="Preview Image"
           />
           <button @click="editStand(stand)">Edit</button>
@@ -60,6 +61,11 @@
           <button @click="deleteStand(stand.id)">Delete</button>
         </li>
       </ul>
+      <div class="pagination flex justify-between items-center mt-[30px]">
+        <button @click="prevPage" :disabled="currentPage === 1">Prev</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+      </div>
     </div>
 
     <div v-if="selectedStand">
@@ -75,14 +81,17 @@
         :src="`http://localhost:8081/uploads/${selectedStand.preview}`"
         alt="Preview Image"
       />
-      <div v-if="selectedStand.images && selectedStand.images.length">
+      <div>
         <h3>Images:</h3>
-        <img
-          v-for="image in selectedStand.images"
-          :key="image"
-          :src="`http://localhost:8081/uploads/${image}`"
-          alt="Image"
-        />
+        <swiper :slides-per-view="2" :space-between="8" navigation pagination class="w-1/2">
+          <swiper-slide v-for="image in selectedStand.image" :key="image">
+            <img
+              :src="`http://localhost:8081/uploads/${image}`"
+              alt="Image"
+              class="w-[200px] h-auto"
+            />
+          </swiper-slide>
+        </swiper>
       </div>
       <button @click="goBackToList()">Back to List</button>
     </div>
@@ -91,8 +100,13 @@
 
 <script>
 import axios from '@/plugins/axios'
-
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/swiper-bundle.css'
 export default {
+  components: {
+    Swiper,
+    SwiperSlide
+  },
   data() {
     return {
       standList: [],
@@ -108,7 +122,12 @@ export default {
       },
       editMode: false,
       editingId: null,
-      selectedStand: null
+      selectedStand: null,
+      currentPage: 1, // Current page of pagination
+      pageSize: 9, // Number of stands per page
+      totalItems: 0, // Total number of stands
+      totalPages: 0, // Total number of pages
+      paginatedStands: [] // Array to hold stands for the current page
     }
   },
   computed: {
@@ -122,10 +141,37 @@ export default {
   methods: {
     async fetchStands() {
       try {
-        const response = await axios.get('http://localhost:8081/stands')
+        const response = await axios.get('http://localhost:8081/stands', {
+          params: {
+            _page: this.currentPage, // Pass current page as a query parameter
+            _limit: this.pageSize // Pass page size as a query parameter
+          }
+        })
         this.standList = response.data
+        // Assuming you receive total count headers, update totalItems and totalPages
+        this.totalItems = this.standList.length
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize)
+        this.paginateStands()
       } catch (error) {
         console.error('Error fetching stands:', error)
+      }
+    },
+    paginateStands() {
+      const startIndex = (this.currentPage - 1) * this.pageSize
+      this.paginatedStands = this.standList.slice(startIndex, startIndex + this.pageSize)
+    },
+
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--
+        this.fetchStands() // Fetch stands for previous page
+      }
+    },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++
+        this.fetchStands() // Fetch stands for next page
       }
     },
     handlePreviewUpload(event) {
@@ -236,6 +282,7 @@ export default {
       try {
         await axios.delete(`http://localhost:8081/stands/${id}`)
         this.standList = this.standList.filter((stand) => stand.id !== id)
+        this.paginatedStands = this.paginatedStands.filter((stand) => stand.id !== id)
       } catch (error) {
         console.error('Error deleting stand:', error)
       }

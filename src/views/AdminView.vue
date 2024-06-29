@@ -14,9 +14,9 @@
         </div>
         <button type="submit">{{ isLogin ? 'Login' : 'Register' }}</button>
       </form>
-      <button @click="toggleMode" class="mt-[30px]">
+      <!-- <button @click="toggleMode" class="mt-[30px]">
         {{ isLogin ? 'Switch to Register' : 'Switch to Login' }}
-      </button>
+      </button> -->
       <p v-if="errorMessage">{{ errorMessage }}</p>
     </div>
   </div>

@@ -27,36 +27,44 @@
     <div v-if="!selectedComment">
       <ul class="comment-list flex flex-wrap items-center justify-start gap-[50px]">
         <li
-          v-for="comment in sortedCommList"
+          v-for="comment in paginatedComments"
           :key="comment.id"
           class="comment-item border border-[#000] bg-blue-400 rounded-xl p-[10px]"
         >
           <h3>{{ comment.name }}</h3>
           <p>{{ comment.content }}</p>
-          <img
+
+          <video
+            controls
             class="comment-image w-[300px] h-[300px] object-contain"
             v-if="comment.preview"
             :src="`http://localhost:8081/uploads/${comment.preview}`"
             alt="Preview Image"
-          />
+          ></video>
           <button @click="editComment(comment)">Edit</button>
           <button @click="showCommentDetails(comment)">Details</button>
           <button @click="deleteComment(comment.id)">Delete</button>
         </li>
       </ul>
+      <div class="pagination flex justify-between items-center mt-[30px]">
+        <button @click="prevPage" :disabled="currentPage === 1">Prev</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+      </div>
     </div>
 
     <div v-if="selectedComment">
       <h2>{{ selectedComment.name }}</h2>
       <p>{{ selectedComment.content }}</p>
       <p>{{ selectedComment.company }}</p>
-      <img
+      <video
+        controls
         v-if="selectedComment.preview"
         class="w-[700px]"
         :src="`http://localhost:8081/uploads/${selectedComment.preview}`"
         alt="Preview Image"
-      />
-      <div v-if="selectedComment.images && selectedComment.images.length">
+      ></video>
+      <!-- <div v-if="selectedComment.images && selectedComment.images.length">
         <h3>Images:</h3>
         <img
           v-for="image in selectedComment.images"
@@ -64,7 +72,7 @@
           :src="`http://localhost:8081/uploads/${image}`"
           alt="Image"
         />
-      </div>
+      </div> -->
       <button @click="goBackToList()">Back to List</button>
     </div>
   </div>
@@ -86,9 +94,15 @@ export default {
       },
       editMode: false,
       editingId: null,
-      selectedComment: null
+      selectedComment: null,
+      currentPage: 1, // Текущая страница
+      pageSize: 9, // Количество комментариев на странице
+      totalItems: 0, // Общее количество комментариев
+      totalPages: 0, // Общее количество страниц
+      paginatedComments: [] // Отображаемые комментарии на текущей странице
     }
   },
+
   computed: {
     sortedCommList() {
       return this.commentList.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -102,8 +116,27 @@ export default {
       try {
         const response = await axios.get('http://localhost:8081/comments')
         this.commentList = response.data
+        this.totalItems = this.commentList.length
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize)
+        this.paginateComments()
       } catch (error) {
         console.error('Error fetching comments:', error)
+      }
+    },
+    paginateComments() {
+      const startIndex = (this.currentPage - 1) * this.pageSize
+      this.paginatedComments = this.commentList.slice(startIndex, startIndex + this.pageSize)
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--
+        this.paginateComments()
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++
+        this.paginateComments()
       }
     },
     handlePreviewUpload(event) {
@@ -195,6 +228,7 @@ export default {
       try {
         await axios.delete(`http://localhost:8081/comments/${id}`)
         this.commentList = this.commentList.filter((comment) => comment.id !== id)
+        this.paginatedComments = this.paginatedComments.filter((comment) => comment.id !== id)
       } catch (error) {
         console.error('Error deleting comment:', error)
       }
